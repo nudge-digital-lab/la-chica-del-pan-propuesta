@@ -25,7 +25,7 @@
     </button>
     <a class="logo" href="index.html" aria-label="La Chica del Pan, inicio"><span class="logo-img"></span></a>
     <nav class="nav-main" aria-label="Principal">
-      <a href="#tienda">Tienda</a>
+      <button class="nav-mega" type="button" aria-expanded="false" aria-controls="mega-tienda">Tienda<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg></button>
       <a href="#como-pedir">Cómo pedir</a>
       <a href="#mayoristas">Mayoristas</a>
       <a href="#contacto">Contacto</a>
@@ -37,6 +37,7 @@
       </button>
     </div>
   </div>
+  <div class="mega" id="mega-tienda" role="region" aria-label="Tienda" hidden></div>
 </header>
 
 <div class="drawer-backdrop"></div>
@@ -46,8 +47,9 @@
     <button class="icon-btn" type="button" data-close aria-label="Cerrar menú"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
   </div>
   <nav class="mobile-nav" aria-label="Menú celular">
-    <a href="#tienda">Tienda</a>
-    <a href="#categorias">Categorías</a>
+    <p class="mobile-tit">Tienda</p>
+    <div class="mobile-cats" data-mobile-cats></div>
+    <a href="#tienda">Ver toda la tienda</a>
     <a href="#como-pedir">Cómo pedir</a>
     <a href="#mayoristas">Mayoristas</a>
     <a href="#contacto">Contacto</a>
