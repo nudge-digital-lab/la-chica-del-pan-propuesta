@@ -50,6 +50,13 @@ window.LCDP_CATS = {
   datiles: 'Dátiles rellenos', bocaditos: 'Mini cakes y bocaditos', salados: 'Salados', granolas: 'Granolas'
 };
 
+/* Megamenú: foto de cada categoría y los más pedidos (provisorio hasta la planilla y las ventas reales). */
+window.LCDP_CAT_IMG = {
+  panes: 'pan-blanco', cookies: 'cookies-chocolate', trufas: 'chocolate-protein-balls', alfajores: 'alfajor-frutos-rojos',
+  datiles: 'datiles-pistacho', bocaditos: 'mini-cake-pistacho', salados: 'crackers-salados', granolas: 'granola-energy'
+};
+window.LCDP_MAS_PEDIDOS = ['pan-de-almendras', 'cookies-pistacho', 'alfajor-matcha'];
+
 /* Calendario de entregas. En la tienda esto se cambia desde el panel: el día y la hora del corte, y los
    viernes sin entrega (feriados o semanas sin producción), en formato 'AAAA-MM-DD'. */
 window.LCDP_CALENDARIO = {

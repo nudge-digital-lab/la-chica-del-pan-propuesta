@@ -10,6 +10,38 @@
   var $ = function (s, c) { return (c || document).querySelector(s); };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
 
+  /* ---------- Megamenú de «Tienda» (compu) y categorías del menú del celular ---------- */
+  var CAT_IMG = window.LCDP_CAT_IMG || {};
+  var TOP = window.LCDP_MAS_PEDIDOS || [];
+  var enPortada = /(^|\/)(index\.html)?$/.test(location.pathname);
+  var base = enPortada ? '' : 'index.html';
+  var mega = document.getElementById('mega-tienda');
+  if (mega) {
+    mega.innerHTML =
+      '<div class="wrap mega-grid">' +
+      '<div class="mega-cats"><p class="mega-tit">Categorías</p><ul>' +
+      Object.keys(CATS).map(function (k) {
+        return '<li><a href="' + base + '#tienda"><img src="assets/img/' + CAT_IMG[k] + '-640.webp" alt="" loading="lazy" width="72" height="72"><span>' + CATS[k] + '</span></a></li>';
+      }).join('') +
+      '</ul><a class="link-flecha" href="' + base + '#tienda">Ver toda la tienda</a></div>' +
+      '<div class="mega-top"><p class="mega-tit">Lo más pedido</p><ul>' +
+      TOP.map(function (s) { return bySlug[s]; }).filter(Boolean).map(function (p) {
+        return '<li><a href="producto.html"><img src="assets/img/' + p.img + '-640.webp" alt="" loading="lazy" width="64" height="64"><span><strong>' + p.name + '</strong><small>' + (CATS[p.cat] || '') + '</small></span></a></li>';
+      }).join('') +
+      '</ul></div>' +
+      '<aside class="mega-promo"><span class="iso" aria-hidden="true"></span>' +
+      '<p class="mega-tit">Próxima entrega</p><strong data-friday>viernes</strong>' +
+      '<p>Pedí hasta el <span data-cutoff>miércoles a las 18</span>.</p>' +
+      '<a class="btn btn-claro" href="' + base + '#tienda"><span>Pedir para el <b data-friday>viernes</b></span></a>' +
+      '<a class="mega-may" href="' + base + '#mayoristas">¿Tenés un café o una dietética? <b>Mayoristas →</b></a></aside>' +
+      '</div>';
+  }
+  $$('[data-mobile-cats]').forEach(function (box) {
+    box.innerHTML = Object.keys(CATS).map(function (k) {
+      return '<a href="' + base + '#tienda"><img src="assets/img/' + CAT_IMG[k] + '-640.webp" alt="" loading="lazy" width="44" height="44"><span>' + CATS[k] + '</span></a>';
+    }).join('');
+  });
+
   /* ---------- Fechas: entrega los viernes, corte el miércoles anterior a las 18 ----------
      Sale de LCDP_CALENDARIO (en la tienda, del panel). Se saltean los viernes sin entrega. */
   function iso(d) { return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2); }
@@ -30,6 +62,31 @@
     $$('[data-friday]').forEach(function (el) { el.textContent = fmt(nd.friday); });
     $$('[data-cutoff]').forEach(function (el) { el.textContent = fmt(nd.cutoff) + ' a las ' + CAL.horaCorte; });
     $$('[data-cutoff-day]').forEach(function (el) { el.textContent = DIAS[nd.cutoff.getDay()]; });
+  }
+
+  /* ---------- Abrir y cerrar el megamenú: clic, teclado y mouse (con demora para no abrir de pasada) ---------- */
+  var megaBtn = $('.nav-mega');
+  if (mega && megaBtn) {
+    var tAbrir, tCerrar;
+    var conMouse = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    function abrirMega() { clearTimeout(tCerrar); mega.hidden = false; megaBtn.setAttribute('aria-expanded', 'true'); document.body.classList.add('mega-abierto'); }
+    function cerrarMega(volver) {
+      clearTimeout(tAbrir); if (mega.hidden) return;
+      mega.hidden = true; megaBtn.setAttribute('aria-expanded', 'false'); document.body.classList.remove('mega-abierto');
+      if (volver) megaBtn.focus();
+    }
+    megaBtn.addEventListener('click', function () { if (mega.hidden) abrirMega(); else cerrarMega(); });
+    if (conMouse) {
+      [megaBtn, mega].forEach(function (el) {
+        el.addEventListener('mouseenter', function () { clearTimeout(tCerrar); tAbrir = setTimeout(abrirMega, 120); });
+        el.addEventListener('mouseleave', function () { clearTimeout(tAbrir); tCerrar = setTimeout(cerrarMega, 220); });
+      });
+    }
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !mega.hidden) cerrarMega(true); });
+    document.addEventListener('click', function (e) { if (!mega.hidden && !mega.contains(e.target) && !megaBtn.contains(e.target)) cerrarMega(); });
+    mega.addEventListener('click', function (e) { if (e.target.closest('a')) cerrarMega(); });
+    mega.addEventListener('focusout', function (e) { if (!mega.contains(e.relatedTarget) && e.relatedTarget !== megaBtn) cerrarMega(); });
+    window.addEventListener('resize', function () { if (window.innerWidth < 900) cerrarMega(); });
   }
 
   /* ---------- Encabezado ---------- */
