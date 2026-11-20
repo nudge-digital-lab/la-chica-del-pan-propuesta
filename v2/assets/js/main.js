@@ -119,11 +119,12 @@
       '<a class="media" href="' + href + '" tabindex="-1" aria-hidden="true">' +
       '<img src="assets/img/' + p.img + '-640.webp" alt="' + p.name + ' en su envase" loading="lazy" width="640" height="' + (p.tall ? 853 : 640) + '">' +
       '<span class="tags">' + p.tags.map(tagHTML).join('') + '</span></a>' +
-      '<h3><a href="' + href + '">' + p.name + '</a></h3>' +
+      '<div class="body">' +
       '<p class="meta">' + (p.note || CATS[p.cat] || '') + '</p>' +
+      '<h3><a href="' + href + '">' + p.name + '</a></h3>' +
       '<div class="row"><span class="price tbd" title="Precio a confirmar">$ —</span>' +
       '<button class="quick-add" type="button" data-add="' + p.slug + '" aria-label="Agregar ' + p.name + ' al carrito">Agregar</button></div>' +
-      '</article>';
+      '</div></article>';
   }
   $$('[data-products]').forEach(function (grid) {
     var slugs = grid.getAttribute('data-products').split(',');

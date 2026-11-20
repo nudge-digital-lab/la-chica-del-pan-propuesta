@@ -10,7 +10,7 @@
 <meta name="theme-color" content="#F7F0E8">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Instrument+Sans:wght@400..700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Fraunces:ital,opsz,wght@0,9..144,500..700;1,9..144,500&family=Instrument+Sans:wght@400..700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="preload" as="image" href="assets/img/pan-de-almendras-1200.webp">
 </head>
@@ -23,7 +23,7 @@
     <button class="icon-btn menu-toggle" type="button" data-open="menu" aria-controls="menu" aria-expanded="false" aria-label="Abrir menú">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
     </button>
-    <a class="logo" href="index.html" aria-label="La Chica del Pan, inicio"><span class="sm">la</span><span class="big">CHICA</span><span class="sm del">del</span><span class="big">PAN</span></a>
+    <a class="logo" href="index.html" aria-label="La Chica del Pan, inicio"><span class="sm">la</span><span class="big">Chica</span><span class="sm del">del</span><span class="big">Pan</span></a>
     <nav class="nav-main" aria-label="Principal">
       <a href="index.html#tienda">Tienda</a>
       <a href="index.html#como-pedir">Cómo pedir</a>
@@ -42,7 +42,7 @@
 <div class="drawer-backdrop"></div>
 <aside class="drawer drawer-left" id="menu" aria-label="Menú" aria-hidden="true" inert>
   <div class="drawer-head">
-    <a class="logo" href="index.html"><span class="sm">la</span><span class="big">CHICA</span><span class="sm del">del</span><span class="big">PAN</span></a>
+    <a class="logo" href="index.html"><span class="sm">la</span><span class="big">Chica</span><span class="sm del">del</span><span class="big">Pan</span></a>
     <button class="icon-btn" type="button" data-close aria-label="Cerrar menú"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
   </div>
   <nav class="mobile-nav" aria-label="Menú celular">
@@ -56,7 +56,7 @@
 </aside>
 <aside class="drawer drawer-right" id="cart" aria-label="Carrito" aria-hidden="true" inert>
   <div class="drawer-head">
-    <h2 class="display">Tu pedido</h2>
+    <h2>Tu pedido</h2>
     <button class="icon-btn" type="button" data-close aria-label="Cerrar carrito"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
   </div>
   <p class="cart-empty">Tu pedido está vacío. ¿Arrancamos por unas <a href="index.html#tienda">cookies</a>?</p>
@@ -88,7 +88,7 @@
 
       <div class="pdp-info">
         <div class="tags"><span class="tag tag-base">Sin azúcar agregada</span></div>
-        <h1 class="display">Pan de almendras</h1>
+        <h1>Pan de almendras</h1>
         <p class="pdp-sub">Pan de molde con harina de almendras, muzzarella y semillas. Para tostar a la mañana o armar un sándwich.</p>
         <div class="pdp-price"><span class="amount">$ —</span><small>Precio a confirmar</small></div>
         <p class="pdp-pres">Presentación: <strong>1 pan de molde</strong> · Peso: <strong>a confirmar</strong></p>
@@ -104,8 +104,9 @@
         <p class="pay-note"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg>Pago seguro con Mercado Pago: tarjeta, débito o dinero en cuenta.</p>
 
         <div class="delivery">
+          <span class="mano" aria-hidden="true">Horneado a pedido</span>
           <div class="delivery-head">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>
+            <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg></span>
             <p>Si lo pedís hasta el <strong data-cutoff>miércoles a las 18</strong>, lo recibís el <strong data-friday>viernes</strong>.</p>
           </div>
           <div class="delivery-opts">
@@ -146,9 +147,9 @@
       <div class="section-head">
         <div>
           <p class="eyebrow">También te puede gustar</p>
-          <h2 class="display section-title">Para la misma mesa</h2>
+          <h2 class="titulo">Para la <em>misma mesa</em></h2>
         </div>
-        <a class="link-arrow" href="index.html#tienda">Ver todo</a>
+        <a class="link-flecha" href="index.html#tienda">Ver todo</a>
       </div>
       <div class="prod-grid" data-products="pan-blanco,pan-de-chipa,crackers-salados,granola-energy"></div>
     </div>
@@ -160,8 +161,9 @@
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <a class="logo" href="index.html"><span class="sm">la</span><span class="big">CHICA</span><span class="sm del">del</span><span class="big">PAN</span></a>
+        <a class="logo" href="index.html"><span class="sm">la</span><span class="big">Chica</span><span class="sm del">del</span><span class="big">Pan</span></a>
         <p style="margin:14px 0 0;max-width:32ch">Pastelería artesanal sin azúcar agregada, hecha a pedido en Garín.</p>
+        <span class="mano" aria-hidden="true">Hecho a mano, de verdad</span>
       </div>
       <div>
         <h3>Tienda</h3>
@@ -181,7 +183,7 @@
 </footer>
 
 <div class="sticky-buy" aria-hidden="true"><div class="name">Pan de almendras<small>Precio a confirmar</small></div><button class="btn btn-primary" type="button" data-add-pdp="pan-de-almendras" tabindex="-1">Agregar</button></div>
-<div class="proposal-pill" role="note"><span>Propuesta v2 · colores, letra y logo esperan tu manual de marca · precios a confirmar</span><button type="button" aria-label="Ocultar aviso">×</button></div>
+<div class="proposal-pill" role="note"><span>Propuesta v2 · colores, letra y logo provisorios hasta tener tu manual de marca · precios a confirmar</span><button type="button" aria-label="Ocultar aviso">×</button></div>
 <div class="toast" role="status" aria-live="polite"><span class="toast-msg"></span><button type="button">Ver pedido</button></div>
 
 <script src="assets/js/data.js"></script>
