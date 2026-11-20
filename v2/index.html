@@ -6,11 +6,11 @@
 <title>La Chica del Pan · Pastelería sin azúcar agregada, hecha a pedido en Garín</title>
 <meta name="description" content="Panes, cookies y alfajores hechos a mano, con ingredientes que conocés y sin azúcar agregada. Hechos a pedido en Garín, entregas los viernes en CABA y Zona Norte.">
 <meta name="robots" content="noindex, nofollow">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%235A1F30%27/%3E%3Ctext x=%2732%27 y=%2744%27 font-family=%27Georgia%27 font-weight=%27700%27 font-size=%2730%27 text-anchor=%27middle%27 fill=%27%23F3B6CB%27%3ECP%3C/text%3E%3C/svg%3E">
-<meta name="theme-color" content="#F7F0E6">
+<link rel="icon" type="image/png" href="assets/marca/favicon.png">
+<meta name="theme-color" content="#F0DEC6">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600&family=Fraunces:ital,opsz,wght@0,9..144,500..700;1,9..144,500&family=Instrument+Sans:wght@400..700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&family=Schibsted+Grotesk:wght@400..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="preload" as="image" href="assets/img/pan-de-almendras-1200.webp">
 </head>
@@ -23,7 +23,7 @@
     <button class="icon-btn menu-toggle" type="button" data-open="menu" aria-controls="menu" aria-expanded="false" aria-label="Abrir menú">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
     </button>
-    <a class="logo" href="index.html" aria-label="La Chica del Pan, inicio"><span class="sm">la</span><span class="big">Chica</span><span class="sm del">del</span><span class="big">Pan</span></a>
+    <a class="logo" href="index.html" aria-label="La Chica del Pan, inicio"><span class="logo-img"></span></a>
     <nav class="nav-main" aria-label="Principal">
       <a href="#tienda">Tienda</a>
       <a href="#como-pedir">Cómo pedir</a>
@@ -42,7 +42,7 @@
 <div class="drawer-backdrop"></div>
 <aside class="drawer drawer-left" id="menu" aria-label="Menú" aria-hidden="true" inert>
   <div class="drawer-head">
-    <a class="logo" href="index.html"><span class="sm">la</span><span class="big">Chica</span><span class="sm del">del</span><span class="big">Pan</span></a>
+    <a class="logo" href="index.html" aria-label="La Chica del Pan, inicio"><span class="logo-img"></span></a>
     <button class="icon-btn" type="button" data-close aria-label="Cerrar menú"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
   </div>
   <nav class="mobile-nav" aria-label="Menú celular">
@@ -80,10 +80,11 @@
           <a class="link-flecha" href="#como-pedir">Cómo pedir</a>
         </div>
       </div>
-      <div class="hero-media">
+      <div class="hero-media cuadrille">
         <figure class="hero-foto"><img src="assets/img/pan-de-almendras-1200.webp" alt="Pan de almendras en su bolsa con etiqueta bordó" width="1086" height="1448" fetchpriority="high"></figure>
         <figure class="hero-chica"><img src="assets/img/cookies-pistacho-640.webp" alt="Cookies de pistacho junto a su bolsa" width="640" height="640"></figure>
-        <p class="hero-nota mano" aria-hidden="true">Hecho a mano<br>en Garín<svg viewBox="0 0 64 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M58 4C42 8 26 16 14 32"/><path d="M8 24l5 9 10-2"/></svg></p>
+        <span class="sticker hero-sticker">✦ Hecho a mano en Garín</span>
+        <span class="hero-iso" aria-hidden="true"><span class="iso"></span></span>
         <div class="fecha-card" role="note">
           <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg></span>
           <span>Próxima entrega<strong data-friday>viernes</strong>Pedí hasta el <span data-cutoff>miércoles a las 18</span></span>
@@ -146,13 +147,13 @@
         <li><h3>El viernes, a tu mesa</h3><p>Te lo llevamos a CABA o Zona Norte, o lo pasás a buscar por Garín.</p></li>
       </ol>
       <p class="next-date"><span>Pedís hasta el <strong data-cutoff>miércoles a las 18</strong></span><span aria-hidden="true">→</span><span>recibís el <strong data-friday>viernes</strong></span></p>
-      <p class="mano" aria-hidden="true">¡Así de fácil!</p>
+      <p><span class="sticker sticker--rosa">¡Así de fácil!</span></p>
     </div>
   </section>
 
   <section class="para" aria-label="Perfecto para">
     <div class="wrap para-row">
-      <p class="mano">Perfecto para…</p>
+      <p class="para-titulo">Perfecto para…</p>
       <ul>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h12v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V9z"/><path d="M16 11h1.5a2.5 2.5 0 0 1 0 5H16"/><path d="M8 3c0 1.5 1 1.5 1 3M12 3c0 1.5 1 1.5 1 3"/></svg>El desayuno</li>
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10c0-1.6 1.2-3 5-3s5 1.4 5 3c0 4-1 10-5 10s-5-6-5-10z"/><path d="M7.2 10.5c2 1 7.6 1 9.6 0"/><path d="M13 9l4-6.5"/><path d="M16 3l2.2-.6"/></svg>La merienda</li>
@@ -164,10 +165,9 @@
 
   <section class="section">
     <div class="wrap etiqueta">
-      <figure class="etiqueta-foto">
-        <img src="assets/img/pan-de-almendras-etiqueta-1200.webp" alt="Etiqueta del pan de almendras con sus ingredientes" loading="lazy" width="710" height="780">
-        <span class="mano n1" aria-hidden="true">Todo a la vista</span>
-        <span class="mano n2" aria-hidden="true">Pocos y reales</span>
+      <figure class="etiqueta-arte cuadrille">
+        <span class="burbuja">Che, ¿sabías que podés comer rico y sin azúcar agregada?</span>
+        <span class="ilustracion" role="img" aria-label="Ilustración de Katia, La Chica del Pan"></span>
       </figure>
       <div>
         <p class="eyebrow">Leé la etiqueta</p>
@@ -195,7 +195,7 @@
   <section class="section" style="padding-top:0">
     <div class="wrap">
       <div class="ig-band">
-        <p><span class="eyebrow">Instagram</span><strong>@lachicadelpan___</strong></p>
+        <div class="ig-izq"><span class="iso" aria-hidden="true"></span><p><span class="eyebrow">Instagram</span><strong>@lachicadelpan___</strong></p></div>
         <a class="link-flecha" href="https://www.instagram.com/lachicadelpan___/" target="_blank" rel="noopener">Seguinos</a>
       </div>
     </div>
@@ -206,9 +206,9 @@
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <a class="logo" href="index.html"><span class="sm">la</span><span class="big">Chica</span><span class="sm del">del</span><span class="big">Pan</span></a>
+        <a class="logo" href="index.html" aria-label="La Chica del Pan, inicio"><span class="logo-img"></span></a>
         <p style="margin:14px 0 0;max-width:32ch">Pastelería artesanal sin azúcar agregada, hecha a pedido en Garín.</p>
-        <span class="mano" aria-hidden="true">Hecho a mano, de verdad</span>
+        <span class="foot-tag">✦ Hecho a mano en Garín</span>
       </div>
       <div>
         <h3>Tienda</h3>
@@ -220,14 +220,14 @@
       </div>
       <div>
         <h3>Contacto</h3>
-        <ul><li><a href="#" data-wa="Hola! Quería hacerles una consulta.">WhatsApp</a></li><li><a href="https://www.instagram.com/lachicadelpan___/" target="_blank" rel="noopener">Instagram</a></li></ul>
+        <ul><li><a href="#" data-wa="Hola! Quería hacerles una consulta.">WhatsApp</a></li><li><a href="https://www.instagram.com/lachicadelpan___/" target="_blank" rel="noopener">Instagram</a></li><li><a href="mailto:lachicadelpan_@hotmail.com">lachicadelpan_@hotmail.com</a></li></ul>
       </div>
     </div>
     <div class="foot-bottom"><span>© 2026 La Chica del Pan · Pagos con Mercado Pago</span><span>Tienda hecha por nudge</span></div>
   </div>
 </footer>
 
-<div class="proposal-pill" role="note"><span>Propuesta v2 · colores, letra y logo provisorios hasta tener tu manual de marca · precios a confirmar</span><button type="button" aria-label="Ocultar aviso">×</button></div>
+<div class="proposal-pill" role="note"><span>Propuesta v3 · con tu manual de marca · precios a confirmar</span><button type="button" aria-label="Ocultar aviso">×</button></div>
 <div class="toast" role="status" aria-live="polite"><span class="toast-msg"></span><button type="button">Ver pedido</button></div>
 
 <script src="assets/js/data.js"></script>

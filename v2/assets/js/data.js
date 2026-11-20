@@ -60,4 +60,4 @@ window.LCDP_CALENDARIO = {
 };
 
 /* WhatsApp de la marca: lo pasa Katia. Vacío, los enlaces avisan que falta el número. */
-window.LCDP_WHATSAPP = '';
+window.LCDP_WHATSAPP = '5491124036730'; // +54 9 11 2403-6730, del brief del 20/11

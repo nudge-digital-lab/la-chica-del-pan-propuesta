@@ -3,27 +3,27 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>La Chica del Pan · Pastelería saludable hecha a pedido</title>
-<meta name="description" content="Panes, cookies, alfajores y bocaditos sin azúcar y sin gluten, hechos a pedido en Garín. Envíos los viernes a CABA y Zona Norte.">
+<title>La Chica del Pan · Pastelería sin azúcar agregada, hecha a pedido en Garín</title>
+<meta name="description" content="Panes, cookies y alfajores hechos a mano, con ingredientes que conocés y sin azúcar agregada. Hechos a pedido en Garín, entregas los viernes en CABA y Zona Norte.">
 <meta name="robots" content="noindex, nofollow">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%235A1F30%27/%3E%3Ctext x=%2732%27 y=%2744%27 font-family=%27Arial%27 font-weight=%27900%27 font-size=%2730%27 text-anchor=%27middle%27 fill=%27%23F5B8D0%27%3ECP%3C/text%3E%3C/svg%3E">
-<meta name="theme-color" content="#F7F0E8">
+<link rel="icon" type="image/png" href="assets/marca/favicon.png">
+<meta name="theme-color" content="#F0DEC6">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&family=Instrument+Sans:wght@400..700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&family=Schibsted+Grotesk:wght@400..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="assets/css/style.css">
 <link rel="preload" as="image" href="assets/img/pan-de-almendras-1200.webp">
 </head>
 <body>
 
-<div class="cutoff-bar">Entrega del <strong data-friday>viernes</strong> · pedí hasta el <span data-cutoff>martes</span></div>
+<div class="cutoff-bar">Entrega del <strong data-friday>viernes</strong> · pedí hasta el <span data-cutoff>miércoles a las 18</span></div>
 
 <header class="site-header">
   <div class="wrap header-row">
     <button class="icon-btn menu-toggle" type="button" data-open="menu" aria-controls="menu" aria-expanded="false" aria-label="Abrir menú">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
     </button>
-    <a class="logo" href="index.html" aria-label="La Chica del Pan, inicio"><span class="sm">la</span><span class="big">CHICA</span><span class="sm del">del</span><span class="big">PAN</span></a>
+    <a class="logo" href="index.html" aria-label="La Chica del Pan, inicio"><span class="logo-img"></span></a>
     <nav class="nav-main" aria-label="Principal">
       <a href="#tienda">Tienda</a>
       <a href="#como-pedir">Cómo pedir</a>
@@ -42,7 +42,7 @@
 <div class="drawer-backdrop"></div>
 <aside class="drawer drawer-left" id="menu" aria-label="Menú" aria-hidden="true" inert>
   <div class="drawer-head">
-    <a class="logo" href="index.html"><span class="sm">la</span><span class="big">CHICA</span><span class="sm del">del</span><span class="big">PAN</span></a>
+    <a class="logo" href="index.html" aria-label="La Chica del Pan, inicio"><span class="logo-img"></span></a>
     <button class="icon-btn" type="button" data-close aria-label="Cerrar menú"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
   </div>
   <nav class="mobile-nav" aria-label="Menú celular">
@@ -52,14 +52,14 @@
     <a href="#mayoristas">Mayoristas</a>
     <a href="#contacto">Contacto</a>
   </nav>
-  <div class="mobile-nav-foot">Hacemos todo a pedido en Garín. Entregas los viernes en CABA y Zona Norte.</div>
+  <div class="mobile-nav-foot">Horneamos a pedido en nuestro taller de Garín. Entregas los viernes en CABA y Zona Norte.</div>
 </aside>
 <aside class="drawer drawer-right" id="cart" aria-label="Carrito" aria-hidden="true" inert>
   <div class="drawer-head">
-    <h2 class="display">Tu pedido</h2>
+    <h2>Tu pedido</h2>
     <button class="icon-btn" type="button" data-close aria-label="Cerrar carrito"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
   </div>
-  <p class="cart-empty">Todavía no agregaste nada.</p>
+  <p class="cart-empty">Tu pedido está vacío. ¿Arrancamos por unas <a href="#tienda" data-close>cookies</a>?</p>
   <ul class="cart-items"></ul>
   <div class="cart-foot" hidden>
     <div class="cart-row"><span>Total</span><span class="cart-total-qty"></span></div>
@@ -71,137 +71,132 @@
 <main>
   <section class="hero">
     <div class="wrap hero-grid">
-      <div>
-        <p class="eyebrow">Pastelería saludable · Garín</p>
-        <h1 class="display">Pan, cookies y alfajores <em>sin azúcar</em>, hechos a pedido.</h1>
-        <p class="hero-lede">Sin gluten y sin harinas refinadas, con opciones keto y proteicas. Encargás hasta el martes y el viernes lo tenés en tu casa.</p>
+      <div class="hero-copy">
+        <p class="eyebrow">Pastelería de verdad · sin agregados y sin azúcar agregada · Garín</p>
+        <h1>Primero te tienta. <em>Después leés la etiqueta.</em></h1>
+        <p class="hero-lede">Panes, cookies y alfajores hechos a mano, con ingredientes que conocés y sin azúcar agregada. Pedí hasta el <span data-cutoff>miércoles a las 18</span> y el viernes lo tenés.</p>
         <div class="hero-ctas">
-          <a class="btn btn-primary" href="#tienda">Ver productos</a>
-          <a class="link-arrow" href="#como-pedir">Cómo pedir</a>
+          <a class="btn btn-primary btn-fecha" href="#tienda"><span>Pedir para el <b data-friday>viernes</b></span></a>
+          <a class="link-flecha" href="#como-pedir">Cómo pedir</a>
         </div>
-        <p class="hero-note"><span class="dot"></span><span>Próxima entrega: <strong data-friday>viernes</strong></span></p>
       </div>
-      <div class="hero-media">
-        <figure><img src="assets/img/pan-de-almendras-1200.webp" alt="Pan de almendras keto en su bolsa con etiqueta bordó" width="1086" height="1448" fetchpriority="high"></figure>
-        <figure><img src="assets/img/cookies-pistacho-640.webp" alt="Cookies de pistacho apiladas junto a su bolsa" width="640" height="640"></figure>
-        <figure><img src="assets/img/matcha-protein-balls-640.webp" alt="Matcha protein balls fuera de su caja" width="640" height="640"></figure>
+      <div class="hero-media cuadrille">
+        <figure class="hero-foto"><img src="assets/img/pan-de-almendras-1200.webp" alt="Pan de almendras en su bolsa con etiqueta bordó" width="1086" height="1448" fetchpriority="high"></figure>
+        <figure class="hero-chica"><img src="assets/img/cookies-pistacho-640.webp" alt="Cookies de pistacho junto a su bolsa" width="640" height="640"></figure>
+        <span class="sticker hero-sticker">✦ Hecho a mano en Garín</span>
+        <span class="hero-iso" aria-hidden="true"><span class="iso"></span></span>
+        <div class="fecha-card" role="note">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="15" rx="2"/><path d="M4 10h16M9 3v4M15 3v4"/></svg></span>
+          <span>Próxima entrega<strong data-friday>viernes</strong>Pedí hasta el <span data-cutoff>miércoles a las 18</span></span>
+        </div>
       </div>
     </div>
   </section>
 
-  <div class="attrs" aria-label="Lo que no lleva">
+  <div class="attrs" aria-label="Cómo lo hacemos">
     <ul class="wrap">
-      <li>Sin azúcar</li><li>Sin gluten</li><li>Sin harinas refinadas</li><li>Keto y low carb</li><li>Altos en proteína</li><li>Hecho a pedido</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 4v8l-7 4-7-4V7z"/><path d="M5 7l7 4 7-4M12 11v8"/><path d="M3 3l18 18"/></svg>Sin azúcar agregada</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg>Ingredientes que conocés</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-7"/><path d="M12 15c-3 0-5-3-5-6.5S9.5 2 12 2s5 2.5 5 6.5S15 15 12 15z"/><path d="M12 15c-1.2 0-2-3-2-6.5S10.8 2 12 2s2 2.5 2 6.5-.8 6.5-2 6.5z"/></svg>Hecho a mano</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 8h18"/><rect x="7" y="11" width="10" height="6" rx="1"/><path d="M7 6h.01M10 6h.01"/></svg>Horneado a pedido</li>
     </ul>
   </div>
 
-  <section class="section" id="categorias">
+  <section class="section section-first" id="tienda">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Los que no fallan</p>
+          <h2 class="titulo">Los favoritos <em>de la casa</em></h2>
+        </div>
+        <a class="link-flecha" href="#categorias">Ver todo</a>
+      </div>
+      <div class="prod-grid" data-products="pan-de-almendras,cookies-pistacho,cookie-ny-chocolate,alfajor-matcha,matcha-protein-balls,mini-cake-pistacho,chipa,granola-proteica"></div>
+    </div>
+  </section>
+
+  <section class="section" id="categorias" style="padding-top:0">
     <div class="wrap">
       <div class="section-head">
         <div>
           <p class="eyebrow">Categorías</p>
-          <h2 class="display section-title">¿Qué tenés ganas de comer?</h2>
+          <h2 class="titulo">¿Qué tenés <em>ganas de comer?</em></h2>
         </div>
       </div>
-      <div class="cat-grid">
-        <a class="cat-card" href="#tienda"><figure><img src="assets/img/pan-blanco-640.webp" alt="" loading="lazy" width="640" height="853"></figure><span>Panes</span></a>
-        <a class="cat-card" href="#tienda"><figure><img src="assets/img/cookies-chocolate-640.webp" alt="" loading="lazy" width="640" height="640"></figure><span>Cookies</span></a>
-        <a class="cat-card" href="#tienda"><figure><img src="assets/img/alfajor-frutos-rojos-640.webp" alt="" loading="lazy" width="640" height="853"></figure><span>Alfajores</span></a>
-        <a class="cat-card" href="#tienda"><figure><img src="assets/img/chocolate-protein-balls-640.webp" alt="" loading="lazy" width="640" height="640"></figure><span>Proteicos</span></a>
-        <a class="cat-card" href="#tienda"><figure><img src="assets/img/datiles-pistacho-640.webp" alt="" loading="lazy" width="640" height="640"></figure><span>Dátiles rellenos</span></a>
-        <a class="cat-card" href="#tienda"><figure><img src="assets/img/mini-cake-pistacho-640.webp" alt="" loading="lazy" width="640" height="640"></figure><span>Mini cakes y bocaditos</span></a>
-        <a class="cat-card" href="#tienda"><figure><img src="assets/img/crackers-salados-640.webp" alt="" loading="lazy" width="640" height="640"></figure><span>Salados</span></a>
-        <a class="cat-card" href="#tienda"><figure><img src="assets/img/granola-energy-640.webp" alt="" loading="lazy" width="640" height="853"></figure><span>Granolas</span></a>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="tienda" style="padding-top:0">
-    <div class="wrap">
-      <div class="section-head">
-        <div>
-          <p class="eyebrow">Los que más salen</p>
-          <h2 class="display section-title">Para arrancar</h2>
-        </div>
-        <a class="link-arrow" href="#tienda">Ver todo</a>
-      </div>
-      <div class="prod-grid" data-products="pan-de-almendras,cookies-pistacho,cookie-ny-chocolate,alfajor-matcha,matcha-protein-balls,mini-cake-pistacho,chipa,granola-proteica"></div>
+      <nav class="cats" aria-label="Categorías, deslizá para ver más">
+        <a class="cat" href="#tienda"><figure><img src="assets/img/pan-blanco-640.webp" alt="" loading="lazy" width="640" height="853"></figure><span>Panes</span></a>
+        <a class="cat" href="#tienda"><figure><img src="assets/img/cookies-chocolate-640.webp" alt="" loading="lazy" width="640" height="640"></figure><span>Cookies</span></a>
+        <a class="cat" href="#tienda"><figure><img src="assets/img/alfajor-frutos-rojos-640.webp" alt="" loading="lazy" width="640" height="853"></figure><span>Alfajores</span></a>
+        <a class="cat" href="#tienda"><figure><img src="assets/img/chocolate-protein-balls-640.webp" alt="" loading="lazy" width="640" height="640"></figure><span>Trufas y cookies NY</span></a>
+        <a class="cat" href="#tienda"><figure><img src="assets/img/datiles-pistacho-640.webp" alt="" loading="lazy" width="640" height="640"></figure><span>Dátiles rellenos</span></a>
+        <a class="cat" href="#tienda"><figure><img src="assets/img/mini-cake-pistacho-640.webp" alt="" loading="lazy" width="640" height="640"></figure><span>Mini cakes</span></a>
+        <a class="cat" href="#tienda"><figure><img src="assets/img/crackers-salados-640.webp" alt="" loading="lazy" width="640" height="640"></figure><span>Salados</span></a>
+        <a class="cat" href="#tienda"><figure><img src="assets/img/granola-energy-640.webp" alt="" loading="lazy" width="640" height="853"></figure><span>Granolas</span></a>
+      </nav>
     </div>
   </section>
 
   <section class="section how" id="como-pedir">
     <div class="wrap">
       <p class="eyebrow">Cómo pedir</p>
-      <h2 class="display section-title">Lo hacemos cuando lo pedís</h2>
-      <p class="section-lede">No tenemos stock guardado: cada semana horneamos lo que se encargó. Por eso trabajamos con un corte.</p>
+      <h2 class="titulo">Lo hacemos <em>cuando lo pedís</em></h2>
+      <p class="bajada">No tenemos stock guardado: cada semana horneamos lo que se encargó. Por eso trabajamos con un corte.</p>
       <ol class="steps">
-        <li><h3>Encargás hasta el martes</h3><p>Armás tu pedido acá y pagás con Mercado Pago. Lo que entra después del martes pasa a la semana siguiente.</p></li>
-        <li><h3>Lo preparamos en el taller</h3><p>Todo sale de nuestro taller de Garín esa misma semana, con los ingredientes que figuran en cada etiqueta.</p></li>
-        <li><h3>Lo recibís el viernes</h3><p>Te lo llevamos a CABA o Zona Norte, o lo retirás sin cargo por Garín.</p></li>
+        <li><h3>Elegís hasta el <span data-cutoff-day>miércoles</span></h3><p>Armás tu pedido acá hasta el <span data-cutoff>miércoles a las 18</span> y pagás con Mercado Pago. Lo que entra después pasa a la semana siguiente.</p></li>
+        <li><h3>Lo horneamos en nuestro taller de Garín</h3><p>Todo sale del taller esa misma semana, con los ingredientes que figuran en cada etiqueta.</p></li>
+        <li><h3>El viernes, a tu mesa</h3><p>Te lo llevamos a CABA o Zona Norte, o lo pasás a buscar por Garín.</p></li>
       </ol>
-      <p class="next-date"><span>Pedís hasta el <strong data-cutoff>martes</strong></span><span aria-hidden="true">→</span><span>recibís el <strong data-friday>viernes</strong></span></p>
+      <p class="next-date"><span>Pedís hasta el <strong data-cutoff>miércoles a las 18</strong></span><span aria-hidden="true">→</span><span>recibís el <strong data-friday>viernes</strong></span></p>
+      <p><span class="sticker sticker--rosa">¡Así de fácil!</span></p>
+    </div>
+  </section>
+
+  <section class="para" aria-label="Perfecto para">
+    <div class="wrap para-row">
+      <p class="para-titulo">Perfecto para…</p>
+      <ul>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h12v5a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5V9z"/><path d="M16 11h1.5a2.5 2.5 0 0 1 0 5H16"/><path d="M8 3c0 1.5 1 1.5 1 3M12 3c0 1.5 1 1.5 1 3"/></svg>El desayuno</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 10c0-1.6 1.2-3 5-3s5 1.4 5 3c0 4-1 10-5 10s-5-6-5-10z"/><path d="M7.2 10.5c2 1 7.6 1 9.6 0"/><path d="M13 9l4-6.5"/><path d="M16 3l2.2-.6"/></svg>La merienda</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="11" rx="1.5"/><path d="M2 19h20"/></svg>La oficina</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="9" width="18" height="12" rx="1.5"/><path d="M3 13h18M12 9v12"/><path d="M12 9c-1.5-3-5.5-4-5.5-1.5S10 9 12 9zM12 9c1.5-3 5.5-4 5.5-1.5S14 9 12 9z"/></svg>Para regalar</li>
+      </ul>
     </div>
   </section>
 
   <section class="section">
-    <div class="wrap">
-      <div class="section-head">
-        <div>
-          <p class="eyebrow">Por qué La Chica del Pan</p>
-          <h2 class="display section-title">Leé la etiqueta</h2>
-          <p class="section-lede">Cada producto lleva sus ingredientes a la vista. Son pocos y se entienden todos.</p>
+    <div class="wrap etiqueta">
+      <figure class="etiqueta-arte cuadrille">
+        <span class="burbuja">Che, ¿sabías que podés comer rico y sin azúcar agregada?</span>
+        <span class="ilustracion" role="img" aria-label="Ilustración de Katia, La Chica del Pan"></span>
+      </figure>
+      <div>
+        <p class="eyebrow">Leé la etiqueta</p>
+        <h2 class="titulo">Ingredientes <em>que conocés.</em></h2>
+        <p class="bajada">Cada producto lleva sus ingredientes a la vista. Son pocos y se entienden todos.</p>
+        <div class="benefits">
+          <div class="benefit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 4v8l-7 4-7-4V7z"/><path d="M5 7l7 4 7-4M12 11v8"/><path d="M3 3l18 18"/></svg><div><h3>Sin azúcar agregada</h3><p>En cada etiqueta está con qué lo endulzamos.</p></div></div>
+          <div class="benefit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6M9 16h4"/></svg><div><h3>Ingredientes reales</h3><p>Los mismos que leés en la etiqueta de cada producto.</p></div></div>
+          <div class="benefit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22v-7"/><path d="M12 15c-3 0-5-3-5-6.5S9.5 2 12 2s5 2.5 5 6.5S15 15 12 15z"/><path d="M12 15c-1.2 0-2-3-2-6.5S10.8 2 12 2s2 2.5 2 6.5-.8 6.5-2 6.5z"/></svg><div><h3>Hecho a mano</h3><p>Todo sale de nuestro taller de Garín, en tandas chicas.</p></div></div>
+          <div class="benefit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 8h18"/><rect x="7" y="11" width="10" height="6" rx="1"/><path d="M7 6h.01M10 6h.01"/></svg><div><h3>Horneado a pedido</h3><p>No guardamos stock: cada semana horneamos lo que se encargó.</p></div></div>
         </div>
-      </div>
-      <div class="benefits">
-        <div class="benefit"><div class="label-type">Sin azúcar</div><p>Endulzamos con stevia. El dulce de leche y el chocolate que usamos también son sin azúcar.</p></div>
-        <div class="benefit"><div class="label-type">Sin gluten</div><p>Harina de almendras, de maní, de arroz y mezclas sin gluten. Nada de harina de trigo.</p></div>
-        <div class="benefit"><div class="label-type">Keto y low carb</div><p>Panes, cookies y salados pensados para comer bajo en carbohidratos sin resignar sabor.</p></div>
-        <div class="benefit"><div class="label-type">Con proteína</div><p>Protein balls con 10 g por trufa y cookies NY con 15 g por unidad.</p></div>
       </div>
     </div>
   </section>
 
   <section class="section" id="mayoristas" style="padding-top:0">
     <div class="wrap">
-      <div class="wholesale">
-        <div class="wholesale-copy">
-          <p class="eyebrow">Mayoristas</p>
-          <h2 class="display">¿Tenés una cafetería o una dietética?</h2>
-          <p>También vendemos por mayor a cafeterías y dietéticas. Dejanos tus datos y te mandamos la lista mayorista y los mínimos de compra.</p>
-          <form class="ws-form" novalidate>
-            <div class="two">
-              <div class="field"><label for="ws-name">Tu nombre</label><input id="ws-name" name="nombre" autocomplete="name" required></div>
-              <div class="field"><label for="ws-shop">Local</label><input id="ws-shop" name="local" required></div>
-            </div>
-            <div class="two">
-              <div class="field"><label for="ws-phone">WhatsApp</label><input id="ws-phone" name="whatsapp" type="tel" inputmode="tel" autocomplete="tel" required></div>
-              <div class="field"><label for="ws-type">Tipo</label><select id="ws-type" name="tipo"><option>Cafetería</option><option>Dietética</option><option>Otro</option></select></div>
-            </div>
-            <button class="btn btn-light" type="submit">Pedir la lista</button>
-          </form>
-          <p class="form-ok" role="status">Listo, te escribimos por WhatsApp con la lista. (En la propuesta el formulario no envía nada.)</p>
-        </div>
-        <div class="wholesale-media"><img src="assets/img/datiles-surtidos-1200.webp" alt="Caja de dátiles rellenos surtidos vista desde arriba" loading="lazy" width="1200" height="1200"></div>
+      <div class="ws-band">
+        <p><strong>¿Tenés un café o una dietética?</strong> Escribinos y te pasamos la lista mayorista.</p>
+        <a class="btn btn-primary" href="#" data-wa="Hola! Tengo un café / una dietética y quiero la lista mayorista de La Chica del Pan."><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M20 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20l1.2-4.2A8.5 8.5 0 1 1 20 11.5z"/></svg>Pedir la lista por WhatsApp</a>
       </div>
     </div>
   </section>
 
   <section class="section" style="padding-top:0">
     <div class="wrap">
-      <div class="section-head">
-        <div>
-          <p class="eyebrow">Instagram</p>
-          <h2 class="display section-title">@lachicadelpan___</h2>
-        </div>
-        <a class="link-arrow" href="https://www.instagram.com/lachicadelpan___/" target="_blank" rel="noopener">Seguinos</a>
-      </div>
-      <div class="ig-grid">
-        <a href="https://www.instagram.com/lachicadelpan___/" target="_blank" rel="noopener" aria-label="Instagram"><img src="assets/img/mini-bocadito-pistacho-640.webp" alt="" loading="lazy" width="640" height="640"></a>
-        <a href="https://www.instagram.com/lachicadelpan___/" target="_blank" rel="noopener" aria-label="Instagram"><img src="assets/img/bites-snicker-640.webp" alt="" loading="lazy" width="640" height="640"></a>
-        <a href="https://www.instagram.com/lachicadelpan___/" target="_blank" rel="noopener" aria-label="Instagram"><img src="assets/img/pan-de-chipa-640.webp" alt="" loading="lazy" width="640" height="640"></a>
-        <a href="https://www.instagram.com/lachicadelpan___/" target="_blank" rel="noopener" aria-label="Instagram"><img src="assets/img/mini-cake-snicker-640.webp" alt="" loading="lazy" width="640" height="640"></a>
-        <a href="https://www.instagram.com/lachicadelpan___/" target="_blank" rel="noopener" aria-label="Instagram"><img src="assets/img/coco-protein-balls-640.webp" alt="" loading="lazy" width="640" height="640"></a>
-        <a href="https://www.instagram.com/lachicadelpan___/" target="_blank" rel="noopener" aria-label="Instagram"><img src="assets/img/bizcochitos-salados-640.webp" alt="" loading="lazy" width="640" height="640"></a>
+      <div class="ig-band">
+        <div class="ig-izq"><span class="iso" aria-hidden="true"></span><p><span class="eyebrow">Instagram</span><strong>@lachicadelpan___</strong></p></div>
+        <a class="link-flecha" href="https://www.instagram.com/lachicadelpan___/" target="_blank" rel="noopener">Seguinos</a>
       </div>
     </div>
   </section>
@@ -211,8 +206,9 @@
   <div class="wrap">
     <div class="foot-grid">
       <div>
-        <a class="logo" href="index.html"><span class="sm">la</span><span class="big">CHICA</span><span class="sm del">del</span><span class="big">PAN</span></a>
-        <p style="margin:14px 0 0;max-width:32ch">Pastelería saludable hecha a pedido en nuestro taller de Garín.</p>
+        <a class="logo" href="index.html" aria-label="La Chica del Pan, inicio"><span class="logo-img"></span></a>
+        <p style="margin:14px 0 0;max-width:32ch">Pastelería artesanal sin azúcar agregada, hecha a pedido en Garín.</p>
+        <span class="foot-tag">✦ Hecho a mano en Garín</span>
       </div>
       <div>
         <h3>Tienda</h3>
@@ -220,18 +216,18 @@
       </div>
       <div>
         <h3>Entregas</h3>
-        <ul><li>Viernes en CABA y Zona Norte</li><li>Retiro sin cargo en Garín</li><li>Pedidos hasta el martes</li></ul>
+        <ul><li>Viernes en CABA y Zona Norte</li><li>Retiro en Garín</li><li>Pedidos hasta el miércoles a las 18</li></ul>
       </div>
       <div>
         <h3>Contacto</h3>
-        <ul><li><a href="https://www.instagram.com/lachicadelpan___/" target="_blank" rel="noopener">Instagram</a></li><li>WhatsApp (a confirmar)</li><li>Mail con la marca (a confirmar)</li></ul>
+        <ul><li><a href="#" data-wa="Hola! Quería hacerles una consulta.">WhatsApp</a></li><li><a href="https://www.instagram.com/lachicadelpan___/" target="_blank" rel="noopener">Instagram</a></li><li><a href="mailto:lachicadelpan_@hotmail.com">lachicadelpan_@hotmail.com</a></li></ul>
       </div>
     </div>
     <div class="foot-bottom"><span>© 2026 La Chica del Pan · Pagos con Mercado Pago</span><span>Tienda hecha por nudge</span></div>
   </div>
 </footer>
 
-<div class="proposal-pill" role="note"><span>Propuesta de diseño · logo y precios provisorios</span><button type="button" aria-label="Ocultar aviso">×</button></div>
+<div class="proposal-pill" role="note"><span>Propuesta v3 · con tu manual de marca · precios a confirmar</span><button type="button" aria-label="Ocultar aviso">×</button></div>
 <div class="toast" role="status" aria-live="polite"><span class="toast-msg"></span><button type="button">Ver pedido</button></div>
 
 <script src="assets/js/data.js"></script>

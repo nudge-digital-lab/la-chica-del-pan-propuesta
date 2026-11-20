@@ -3,31 +3,41 @@
   'use strict';
   var P = window.LCDP_PRODUCTS || [];
   var TAGS = window.LCDP_TAGS || {};
+  var CATS = window.LCDP_CATS || {};
+  var CAL = window.LCDP_CALENDARIO || { diaEntrega: 5, diasAntesCorte: 2, horaCorte: 18, sinEntrega: [] };
   var bySlug = {};
   P.forEach(function (p) { bySlug[p.slug] = p; });
   var $ = function (s, c) { return (c || document).querySelector(s); };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
 
-  /* ---------- Fechas: entrega los viernes, corte el martes anterior ---------- */
+  /* ---------- Fechas: entrega los viernes, corte el miércoles anterior a las 18 ----------
+     Sale de LCDP_CALENDARIO (en la tienda, del panel). Se saltean los viernes sin entrega. */
+  function iso(d) { return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2); }
   function nextDelivery(now) {
     var d = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    for (var i = 0; i < 14; i++) {
+    for (var i = 0; i < 70; i++) {
       var f = new Date(d); f.setDate(d.getDate() + i);
-      if (f.getDay() !== 5) continue;
-      var cut = new Date(f); cut.setDate(f.getDate() - 3); cut.setHours(23, 59, 59);
-      if (now <= cut) return { friday: f, cutoff: cut };
+      if (f.getDay() !== CAL.diaEntrega || (CAL.sinEntrega || []).indexOf(iso(f)) !== -1) continue;
+      var cut = new Date(f); cut.setDate(f.getDate() - CAL.diasAntesCorte); cut.setHours(CAL.horaCorte, 0, 0, 0);
+      if (now < cut) return { friday: f, cutoff: cut };
     }
   }
   var DIAS = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
   function fmt(d) { return DIAS[d.getDay()] + ' ' + d.getDate() + '/' + (d.getMonth() + 1); }
   var nd = nextDelivery(new Date());
-  $$('[data-friday]').forEach(function (el) { el.textContent = fmt(nd.friday); });
-  $$('[data-cutoff]').forEach(function (el) { el.textContent = fmt(nd.cutoff); });
+  window.LCDP_nextDelivery = nextDelivery;
+  if (nd) {
+    $$('[data-friday]').forEach(function (el) { el.textContent = fmt(nd.friday); });
+    $$('[data-cutoff]').forEach(function (el) { el.textContent = fmt(nd.cutoff) + ' a las ' + CAL.horaCorte; });
+    $$('[data-cutoff-day]').forEach(function (el) { el.textContent = DIAS[nd.cutoff.getDay()]; });
+  }
 
   /* ---------- Encabezado ---------- */
   var header = $('.site-header');
   function onScroll() { if (header) header.classList.toggle('is-scrolled', window.scrollY > 8); }
   window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+  var toast = $('.toast'), toastT;
 
   /* ---------- Paneles (menú y carrito) ---------- */
   var backdrop = $('.drawer-backdrop');
@@ -36,6 +46,7 @@
     var d = document.getElementById(id); if (!d) return;
     close();
     lastFocus = document.activeElement;
+    if (toast) toast.classList.remove('show'); // que el aviso no tape el botón de pagar
     d.classList.add('open'); d.removeAttribute('inert'); d.setAttribute('aria-hidden', 'false');
     backdrop.classList.add('open'); document.body.style.overflow = 'hidden';
     $$('[aria-controls="' + id + '"]').forEach(function (b) { b.setAttribute('aria-expanded', 'true'); });
@@ -86,16 +97,16 @@
     var r = e.target.closest('[data-remove]');
     if (r) { delete cart[r.getAttribute('data-remove')]; save(); renderCart(); }
   });
-  var toast = $('.toast'), toastT;
-  function showToast(msg) {
+  function showToast(msg, sinBoton) {
     if (!toast) return;
     $('.toast-msg', toast).textContent = msg;
+    $('button', toast).hidden = !!sinBoton;
     toast.classList.add('show'); clearTimeout(toastT);
     toastT = setTimeout(function () { toast.classList.remove('show'); }, 3200);
   }
   function add(slug, qty) {
     cart[slug] = (cart[slug] || 0) + qty; save(); renderCart(true);
-    showToast(bySlug[slug].name + (qty > 1 ? ' ×' + qty : '') + ' al carrito');
+    showToast('¡Adentro! ' + bySlug[slug].name + (qty > 1 ? ' ×' + qty : '') + ' ya está en tu pedido.');
   }
   window.LCDP_add = add;
   if (toast) $('button', toast).addEventListener('click', function () { toast.classList.remove('show'); open('cart'); });
@@ -108,11 +119,12 @@
       '<a class="media" href="' + href + '" tabindex="-1" aria-hidden="true">' +
       '<img src="assets/img/' + p.img + '-640.webp" alt="' + p.name + ' en su envase" loading="lazy" width="640" height="' + (p.tall ? 853 : 640) + '">' +
       '<span class="tags">' + p.tags.map(tagHTML).join('') + '</span></a>' +
+      '<div class="body">' +
+      '<p class="meta">' + (p.note || CATS[p.cat] || '') + '</p>' +
       '<h3><a href="' + href + '">' + p.name + '</a></h3>' +
-      '<p class="meta">' + (p.note || 'Sin azúcar · sin gluten') + '</p>' +
       '<div class="row"><span class="price tbd" title="Precio a confirmar">$ —</span>' +
       '<button class="quick-add" type="button" data-add="' + p.slug + '" aria-label="Agregar ' + p.name + ' al carrito">Agregar</button></div>' +
-      '</article>';
+      '</div></article>';
   }
   $$('[data-products]').forEach(function (grid) {
     var slugs = grid.getAttribute('data-products').split(',');
@@ -177,6 +189,19 @@
       $('.form-ok').classList.add('show');
     });
   }
+
+  /* ---------- WhatsApp (sin burbuja flotante: enlaces en el pie, la ficha y mayoristas) ---------- */
+  var WA = (window.LCDP_WHATSAPP || '').replace(/[^0-9]/g, '');
+  $$('[data-wa]').forEach(function (a) {
+    var texto = a.getAttribute('data-wa') || '';
+    if (WA) {
+      a.href = 'https://wa.me/' + WA + (texto ? '?text=' + encodeURIComponent(texto) : '');
+      a.target = '_blank'; a.rel = 'noopener';
+    } else {
+      a.href = '#';
+      a.addEventListener('click', function (e) { e.preventDefault(); showToast('El número de WhatsApp lo sumamos cuando nos lo pases.', true); });
+    }
+  });
 
   /* ---------- Aviso de propuesta ---------- */
   var pill = $('.proposal-pill');
