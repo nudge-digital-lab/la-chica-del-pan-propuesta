@@ -17,7 +17,7 @@
     'cookies-pistacho': 'Las que se terminan primero. Avisada estás.',
     'cookies-clasicas': 'Las de toda la vida, para mojar en el café.',
     'cookies-chocolate': 'Para cuando el antojo pide chocolate y no acepta un no.',
-    'cookie-ny-clasica': 'Gordita y blandita en el medio. Estilo Nueva York, hecha en Garín.',
+    'cookie-ny-clasica': 'Gordita y blandita en el medio. Estilo Nueva York, hecha a mano.',
     'cookie-ny-chocolate': 'La NY para las fans del chocolate. Partila al medio y vas a entender.',
     'cookie-ny-pistacho': 'Gordita, con pistacho y muy difícil de compartir.',
     'matcha-protein-balls': 'Bocaditos de matcha para la cartera, el gym o la reunión eterna.',
@@ -273,11 +273,11 @@
     var cp = +m[1], zona = ZONAS.filter(function (z) { return z.es(cp); })[0];
     var viernes = nd ? 'viernes ' + dm(nd.viernes) : 'el viernes';
     var leg = '<legend class="sr-only">Cómo lo recibís</legend>';
-    var retiro = opcion('retiro', 'Retiro en el taller de Garín', 'Sin cargo · ' + viernes, !zona);
+    var retiro = opcion('retiro', 'Retiro por nuestro taller', 'Sin cargo · ' + viernes, !zona);
     if (zona) {
       ops.innerHTML = leg + opcion('envio', 'Envío a domicilio · ' + zona.nombre, 'Llega el ' + viernes + ' · costo a confirmar', true) + retiro;
     } else {
-      ops.innerHTML = leg + '<p class="fuera">Por ahora no llegamos al ' + m[1] + '. Podés pasarlo a buscar por Garín o <a href="#" data-wa-cp>escribirnos por WhatsApp</a>.</p>' + retiro;
+      ops.innerHTML = leg + '<p class="fuera">Por ahora no llegamos al ' + m[1] + '. Podés pasarlo a buscar por nuestro taller o <a href="#" data-wa-cp>escribirnos por WhatsApp</a>.</p>' + retiro;
       var a = $('[data-wa-cp]', ops);
       a.href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent('¡Hola! ¿Llegan con envíos al código postal ' + m[1] + '?');
       a.target = '_blank'; a.rel = 'noopener';
