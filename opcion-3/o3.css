@@ -156,19 +156,18 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .banda .mini { flex: none; width: 92px; height: 92px; border-radius: 50%; overflow: hidden; border: 4px solid var(--fondo); transform: rotate(-6deg); box-shadow: 0 8px 18px rgba(20, 0, 5, .25); }
 .banda .mini img { width: 100%; height: 100%; object-fit: cover; }
 
-/* Katia */
-.katia { background-color: var(--rosa); background-image: linear-gradient(rgba(111, 3, 21, .09) 50%, transparent 50%), linear-gradient(90deg, rgba(111, 3, 21, .09) 50%, transparent 50%); background-size: 36px 36px; color: var(--bordo); }
-.katia-in { display: grid; grid-template-columns: .8fr 1.2fr; gap: 48px; align-items: center; }
-.katia-ilu { position: relative; aspect-ratio: 800 / 986; max-width: 400px; width: 100%; justify-self: center; }
-.katia-ilu .ilu { position: absolute; inset: 0; background: var(--bordo); -webkit-mask: url(../assets/marca/ilustracion.png) center / contain no-repeat; mask: url(../assets/marca/ilustracion.png) center / contain no-repeat; }
-.katia-ilu .flag { position: absolute; top: 4%; right: -4%; transform: rotate(4deg); font-size: 13px; padding: 9px 18px 9px 12px; }
-.charla { background: var(--blanco); border: 3px solid var(--bordo); border-radius: 28px 28px 28px 6px; padding: clamp(24px, 3.4vw, 44px); box-shadow: 10px 10px 0 var(--bordo); }
-.charla .t-l { margin-bottom: 18px; }
-.charla p { font-size: clamp(16px, 1.3vw, 18.5px); line-height: 1.6; margin: 0 0 14px; color: var(--tinta); }
-.charla .firma { margin: 18px 0 0; font: 800 15px/1.2 var(--display); color: var(--bordo); }
+/* Katia (como su placa de Instagram: amarillo, foto tipo polaroid, «¡hola! SOY KATIA») */
+.katia { background: var(--amarillo); color: var(--bordo); }
+.katia-in { display: grid; grid-template-columns: .9fr 1.1fr; gap: 56px; align-items: center; }
+.katia-foto { margin: 0; justify-self: center; width: 100%; max-width: 420px; padding: 14px; background: var(--fondo); transform: rotate(-3deg); box-shadow: 0 22px 44px rgba(27, 32, 22, .25); }
+.katia-foto img { display: block; width: 100%; height: auto; }
+.katia-hola { display: inline-block; margin: 0 0 8px; font: 800 clamp(34px, 4vw, 56px)/1 var(--display); letter-spacing: -.02em; color: var(--fucsia); transform: rotate(-6deg); }
+.katia-t { margin: 0; font: 900 clamp(60px, 8.4vw, 124px)/.86 var(--display); letter-spacing: -.04em; text-transform: uppercase; color: var(--bordo); }
+.katia-rol { margin: 16px 0 26px; font: 800 14px/1.3 var(--display); letter-spacing: .22em; text-transform: uppercase; color: var(--bordo); }
+.katia-txt > p:not(.katia-hola):not(.katia-rol) { margin: 0 0 14px; max-width: 30em; font-size: clamp(17px, 1.45vw, 21px); line-height: 1.5; color: var(--bordo); }
 
 /* Cómo funciona */
-.pasos-sec { background: var(--amarillo); color: var(--bordo); }
+.pasos-sec { background: var(--rosa); color: var(--bordo); }
 .pasos { list-style: none; margin: 34px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; counter-reset: paso; }
 .pasos li { background: var(--blanco); border: 3px solid var(--bordo); border-radius: 24px; padding: 26px 26px 28px; position: relative; }
 .pasos .n { display: block; font: 900 clamp(64px, 7vw, 104px)/.85 var(--display); letter-spacing: -.05em; color: var(--fucsia); }
@@ -330,8 +329,8 @@ button { font: inherit; color: inherit; cursor: pointer; }
   .banda small { display: none; }
   .banda .mini { width: 62px; height: 62px; border-width: 3px; }
   .katia-in, .etiqueta-in, .mayo-in { grid-template-columns: 1fr; gap: 28px; }
-  .katia-ilu { max-width: 250px; }
-  .charla { box-shadow: 6px 6px 0 var(--bordo); }
+  .katia-foto { max-width: 300px; padding: 10px; }
+  .katia-txt { text-align: left; }
   .pasos { grid-template-columns: 1fr; gap: 14px; }
   .pasos li { padding: 20px 20px 22px; display: grid; grid-template-columns: auto 1fr; column-gap: 16px; align-items: start; }
   .pasos .n { grid-row: span 2; font-size: 64px; }
