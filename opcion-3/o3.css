@@ -63,7 +63,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 /* ---------- Encabezado ---------- */
 .header { position: sticky; top: 0; z-index: 40; background: var(--fondo); border-bottom: 2px solid var(--bordo); }
 .header-in { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; min-height: 72px; gap: 12px; }
-.nav { display: flex; gap: 26px; }
+.nav { display: flex; gap: 20px; }
 .nav a { font: 800 14px/1 var(--display); letter-spacing: .05em; text-transform: uppercase; text-decoration: none; color: var(--bordo); padding: 8px 0; border-bottom: 2px solid transparent; }
 .nav a:hover { border-color: var(--bordo); }
 .logo { display: block; width: 200px; aspect-ratio: 900 / 173; background: var(--marron); -webkit-mask: url(../assets/marca/logo.png) center / contain no-repeat; mask: url(../assets/marca/logo.png) center / contain no-repeat; }
@@ -389,7 +389,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .mega-entrega .btn { min-height: 46px; }
 .mega-mayo { font: 700 13.5px/1.35 var(--display); color: var(--amarillo); text-decoration: none; margin-top: auto; }
 .mega-mayo:hover { text-decoration: underline; }
-@media (max-width: 1020px) { .mega { display: none !important; } }
+@media (max-width: 1100px) { .mega { display: none !important; } }
 
 /* Categorías con foto en el menú del celular */
 .menu-movil .cats a { display: flex; align-items: center; gap: 10px; }
@@ -427,3 +427,15 @@ button { font: inherit; color: inherit; cursor: pointer; }
 
 /* Lo que lleva el atributo hidden no se muestra aunque su clase defina display */
 [hidden] { display: none !important; }
+
+/* Menú de arriba: con «Quiénes somos» necesita más lugar */
+@media (max-width: 1100px) {
+  .nav { display: none; }
+  .menu-btn { display: inline-flex; }
+  .header-in { grid-template-columns: auto 1fr auto; }
+  .logo { justify-self: center; }
+}
+@media (min-width: 1101px) and (max-width: 1280px) {
+  .nav { gap: 16px; }
+  .nav a, .nav-tienda { font-size: 13px; }
+}

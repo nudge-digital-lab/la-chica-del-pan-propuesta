@@ -3,6 +3,9 @@
    hasta que Katia diga en qué productos van). Precios: no se muestran hasta tener la planilla. */
 (function () {
   var P = window.LCDP_PRODUCTS || [], CATS = window.LCDP_CATS || {}, CAL = window.LCDP_CALENDARIO, WA = window.LCDP_WHATSAPP || '';
+  /* Categorías como las pidió Katia (25/11): las cookies NY van con las cookies, las trufas solas y «Snacks salados». */
+  P.forEach(function (p) { if (/^cookie-ny-/.test(p.slug)) p.cat = 'cookies'; });
+  CATS = Object.assign({}, CATS, { trufas: 'Trufas', salados: 'Snacks salados' });
   var bySlug = {}; P.forEach(function (p) { bySlug[p.slug] = p; });
   var $ = function (s, c) { return (c || document).querySelector(s); };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
@@ -55,9 +58,9 @@
     datiles: ['#C7CD54', '#1B2016'], bocaditos: ['#2559BF', '#FFFFFF'], salados: ['#6F0315', '#FDB8CC'], granolas: ['#CB2C5C', '#FFFFFF']
   };
   var CAT_IMG = window.LCDP_CAT_IMG || {};
-  var CORTO = { trufas: 'Trufas y NY', datiles: 'Dátiles', bocaditos: 'Bocaditos' };
+  var CORTO = { datiles: 'Dátiles', bocaditos: 'Bocaditos' };
   var CAT_LINEA = {
-    panes: 'Para tostar, para el sándwich, para todo', cookies: 'Clásicas, de chocolate y de pistacho', trufas: 'Bocaditos y cookies estilo Nueva York',
+    panes: 'Para tostar, para el sándwich, para todo', cookies: 'Clásicas, de chocolate, de pistacho y estilo NY', trufas: 'De matcha, de chocolate y de coco',
     alfajores: 'De chocolate, matcha y frutos rojos', datiles: 'Rellenos de pistacho, cajú, chocolate y maní', bocaditos: 'Mini cakes y bites para darte un gusto',
     salados: 'Chipá, crackers y bizcochitos', granolas: 'Para el yogur o directo del paquete'
   };
@@ -173,7 +176,7 @@
     document.addEventListener('click', function (e) { if (!mega.hidden && !mega.contains(e.target) && !megaBtn.contains(e.target)) cerrarMega(); });
     mega.addEventListener('click', function (e) { if (e.target.closest('a')) cerrarMega(); });
     mega.addEventListener('focusout', function (e) { if (e.relatedTarget && !mega.contains(e.relatedTarget) && e.relatedTarget !== megaBtn) cerrarMega(); });
-    window.addEventListener('resize', function () { if (window.innerWidth <= 1020) cerrarMega(); });
+    window.addEventListener('resize', function () { if (window.innerWidth <= 1100) cerrarMega(); });
   }
 
   /* ---------- Pedido (carrito de muestra, queda en el navegador) ---------- */
