@@ -397,3 +397,34 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .menu-movil .cats img { flex: none; width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid var(--fondo); }
 .nav { align-items: center; }
 .nav a, .nav-tienda { min-height: 44px; display: inline-flex; align-items: center; padding-top: 0; padding-bottom: 0; }
+
+/* ---------- Contador en la tarjeta (después de sumar) ---------- */
+.ctrl { position: absolute; right: 12px; bottom: 12px; z-index: 2; }
+.ctrl .sumar { position: static; }
+.paso { display: inline-flex; align-items: center; height: 48px; border-radius: 999px; background: var(--bordo); color: var(--rosa); box-shadow: 0 6px 16px rgba(27, 32, 22, .3); }
+.paso button { width: 46px; height: 46px; border: 0; border-radius: 50%; background: transparent; color: var(--rosa); font: 800 22px/1 var(--display); }
+.paso button:hover { background: var(--fucsia); color: var(--blanco); }
+.paso output { min-width: 26px; text-align: center; font: 900 18px/1 var(--display); color: var(--blanco); }
+.mas-de-uno { margin: 14px 0 0; font: 700 14px/1.4 var(--display); color: var(--marron); }
+.mas-de-uno b { color: var(--bordo); }
+
+/* ---------- Envío por código postal en el carrito ---------- */
+.envio { margin-top: 18px; padding: 16px; border-radius: 18px; background: var(--blanco); border: 2px solid var(--bordo); }
+.envio-t { display: block; font: 900 15px/1 var(--display); text-transform: uppercase; letter-spacing: .03em; color: var(--bordo); margin-bottom: 10px; }
+.envio-fila { display: flex; gap: 8px; }
+.envio-fila input { flex: 1; min-width: 0; height: 46px; border: 2px solid var(--bordo); border-radius: 999px; padding: 0 16px; font: 700 16px/1 var(--display); color: var(--tinta); background: var(--fondo); }
+.envio-fila input::placeholder { color: var(--marron); opacity: .8; }
+.envio-fila .btn { min-height: 46px; padding: 0 18px; }
+.envio-ayuda { margin: 8px 0 0; font-size: 13px; color: var(--marron); }
+.envio-error { margin: 8px 0 0; font: 700 14px/1.35 var(--display); color: var(--fucsia); }
+.envio-opciones { border: 0; margin: 12px 0 0; padding: 0; display: grid; gap: 8px; }
+.opcion { display: flex; gap: 10px; align-items: flex-start; padding: 12px; border-radius: 14px; border: 2px solid var(--crema); cursor: pointer; }
+.opcion:has(input:checked) { border-color: var(--bordo); background: var(--fondo); }
+.opcion input { margin-top: 3px; width: 18px; height: 18px; accent-color: var(--bordo); }
+.opcion b { display: block; font: 800 14.5px/1.2 var(--display); color: var(--bordo); }
+.opcion small { display: block; font-size: 13px; color: var(--marron); margin-top: 2px; }
+.fuera { margin: 0; font-size: 14px; color: var(--tinta); }
+.fuera a { color: var(--bordo); font-weight: 700; }
+
+/* Lo que lleva el atributo hidden no se muestra aunque su clase defina display */
+[hidden] { display: none !important; }

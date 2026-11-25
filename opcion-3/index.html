@@ -221,7 +221,19 @@
 <div class="capa" aria-hidden="true"></div>
 <aside class="cajon cajon-der" id="pedido" aria-label="Tu pedido" aria-hidden="true" inert>
   <div class="cajon-head"><h2>Tu pedido</h2><button type="button" class="cerrar" data-cerrar aria-label="Cerrar el pedido">✕</button></div>
-  <div class="cajon-body"></div>
+  <div class="cajon-body">
+    <div class="items"></div>
+    <form class="envio" data-envio novalidate hidden>
+      <label class="envio-t" for="cp">Calculá el envío</label>
+      <div class="envio-fila">
+        <input id="cp" name="cp" type="text" inputmode="numeric" autocomplete="postal-code" placeholder="Tu código postal" maxlength="8" aria-describedby="cp-ayuda">
+        <button type="submit" class="btn btn-bordo">Calcular</button>
+      </div>
+      <p class="envio-ayuda" id="cp-ayuda">Por ejemplo, 1636. Entregamos los viernes en CABA y Zona Norte.</p>
+      <p class="envio-error" role="alert" hidden></p>
+      <fieldset class="envio-opciones" hidden><legend class="sr-only">Cómo lo recibís</legend></fieldset>
+    </form>
+  </div>
   <div class="cajon-pie" hidden>
     <p>Llega el <span data-viernes>viernes</span> si lo cerrás hasta el <span data-corte>miércoles a las 18</span>.</p>
     <button type="button" class="btn btn-bordo" data-finalizar>Finalizar pedido</button>

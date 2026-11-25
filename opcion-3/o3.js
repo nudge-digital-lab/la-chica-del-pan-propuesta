@@ -123,6 +123,7 @@
     var c = document.getElementById(id); if (!c) return;
     if (abierto) cerrar(true);
     volverA = document.activeElement; abierto = c;
+    if (aviso) aviso.classList.remove('visible');   /* que el aviso no tape «Finalizar pedido» */
     c.classList.add('abierto'); c.removeAttribute('inert'); c.setAttribute('aria-hidden', 'false');
     capa.classList.add('abierta'); document.body.style.overflow = 'hidden';
     $$('[aria-controls="' + id + '"]').forEach(function (b) { b.setAttribute('aria-expanded', 'true'); });
@@ -187,22 +188,34 @@
       if (salto) { c.classList.remove('salta'); void c.offsetWidth; c.classList.add('salta'); }
     });
     $$('.carrito-btn').forEach(function (b) { b.setAttribute('aria-label', 'Ver tu pedido: ' + n + (n === 1 ? ' producto' : ' productos')); });
-    var body = $('#pedido .cajon-body'), pie = $('#pedido .cajon-pie');
-    if (!body) return;
+    $$('[data-ctrl]').forEach(function (c) { c.innerHTML = control(c.getAttribute('data-ctrl')); });
+    var items = $('#pedido .items'), pie = $('#pedido .cajon-pie'), envio = $('[data-envio]');
+    if (!items) return;
     var ks = Object.keys(ped).filter(function (k) { return bySlug[k] && ped[k] > 0; });
     if (!ks.length) {
-      body.innerHTML = '<div class="vacio"><p>Todavía no sumaste nada.</p><p>Arrancá por el pan de almendras: no falla.</p></div>';
-      pie.hidden = true; return;
+      items.innerHTML = '<div class="vacio"><p>Todavía no sumaste nada.</p><p>Arrancá por el pan de almendras: no falla.</p></div>';
+      pie.hidden = true; if (envio) envio.hidden = true; return;
     }
-    pie.hidden = false;
-    body.innerHTML = ks.map(function (k) {
+    pie.hidden = false; if (envio) envio.hidden = false;
+    items.innerHTML = ks.map(function (k) {
       var p = bySlug[k];
       return '<div class="item"><img src="' + IMG + p.img + '-640.webp" alt="" width="64" height="64">' +
         '<div><b>' + p.name + '</b><div class="cant" role="group" aria-label="Cantidad de ' + p.name + '">' +
         '<button type="button" data-mas="' + k + '" data-n="-1" aria-label="Restar uno">−</button><output>' + ped[k] + '</output>' +
         '<button type="button" data-mas="' + k + '" data-n="1" aria-label="Sumar uno">+</button></div></div>' +
         '<button type="button" class="quitar" data-quitar="' + k + '">Quitar</button></div>';
-    }).join('');
+    }).join('') + '<p class="mas-de-uno">¿Querés llevar 2, 3 o más? Sumalos con el <b>+</b> de cada producto.</p>';
+  }
+  /* Control de cada tarjeta: «+» si todavía no está en el pedido; contador − n + si ya está. */
+  function control(slug) {
+    var p = bySlug[slug], n = ped[slug] || 0;
+    if (!p) return '';
+    if (!n) return '<button type="button" class="sumar" data-sumar="' + slug + '" aria-label="Sumar ' + p.name + ' al pedido">' +
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button>';
+    return '<span class="paso" role="group" aria-label="' + p.name + ' en tu pedido">' +
+      '<button type="button" data-mas="' + slug + '" data-n="-1" aria-label="Restar un ' + p.name.toLowerCase() + '">−</button>' +
+      '<output aria-live="polite">' + n + '</output>' +
+      '<button type="button" data-mas="' + slug + '" data-n="1" aria-label="Sumar otro ' + p.name.toLowerCase() + '">+</button></span>';
   }
   function sumar(slug, n) {
     ped[slug] = (ped[slug] || 0) + (n || 1);
@@ -221,9 +234,9 @@
   document.addEventListener('click', function (e) {
     var b = e.target.closest('[data-sumar]');
     if (b) {
-      var s = b.getAttribute('data-sumar'); sumar(s, 1);
-      b.classList.add('ok'); setTimeout(function () { b.classList.remove('ok'); }, 900);
-      avisar('Sumaste ' + bySlug[s].name + ' a tu pedido', true); return;
+      var s = b.getAttribute('data-sumar'), caja = b.closest('[data-ctrl]'); sumar(s, 1);
+      if (caja) { var otro = $('[data-n="1"]', caja); if (otro) otro.focus(); }
+      avisar('Sumaste ' + bySlug[s].name + '. Con el + llevás más.', true); return;
     }
     var m = e.target.closest('[data-mas]');
     if (m) { sumar(m.getAttribute('data-mas'), +m.getAttribute('data-n')); return; }
@@ -235,6 +248,50 @@
   });
   pintarPedido();
 
+  /* ---------- Envío por código postal (zonas de MUESTRA hasta tener las de Katia) ----------
+     En la tienda esto sale de las zonas de envío de WooCommerce, con sus tarifas. */
+  var ZONAS = [
+    { nombre: 'CABA', es: function (cp) { return cp >= 1000 && cp <= 1499; } },
+    { nombre: 'Zona Norte', es: function (cp) { return (cp >= 1600 && cp <= 1649) || (cp >= 1660 && cp <= 1670); } }
+  ];
+  var KEY_CP = 'lcdp-o3-cp';
+  var formEnvio = $('[data-envio]');
+  function opcion(valor, titulo, detalle, marcada) {
+    return '<label class="opcion"><input type="radio" name="entrega" value="' + valor + '"' + (marcada ? ' checked' : '') + '>' +
+      '<span><b>' + titulo + '</b><small>' + detalle + '</small></span></label>';
+  }
+  function calcularEnvio(texto, sinFoco) {
+    var err = $('.envio-error', formEnvio), ops = $('.envio-opciones', formEnvio);
+    var m = String(texto || '').toUpperCase().replace(/\s/g, '').match(/^[A-Z]?(\d{4})([A-Z]{3})?$/);
+    if (!m) {
+      ops.hidden = true; err.hidden = false;
+      err.textContent = 'Poné los 4 números de tu código postal, por ejemplo 1636.';
+      if (!sinFoco) $('#cp').focus();
+      return;
+    }
+    err.hidden = true;
+    var cp = +m[1], zona = ZONAS.filter(function (z) { return z.es(cp); })[0];
+    var viernes = nd ? 'viernes ' + dm(nd.viernes) : 'el viernes';
+    var leg = '<legend class="sr-only">Cómo lo recibís</legend>';
+    var retiro = opcion('retiro', 'Retiro en el taller de Garín', 'Sin cargo · ' + viernes, !zona);
+    if (zona) {
+      ops.innerHTML = leg + opcion('envio', 'Envío a domicilio · ' + zona.nombre, 'Llega el ' + viernes + ' · costo a confirmar', true) + retiro;
+    } else {
+      ops.innerHTML = leg + '<p class="fuera">Por ahora no llegamos al ' + m[1] + '. Podés pasarlo a buscar por Garín o <a href="#" data-wa-cp>escribirnos por WhatsApp</a>.</p>' + retiro;
+      var a = $('[data-wa-cp]', ops);
+      a.href = 'https://wa.me/' + WA + '?text=' + encodeURIComponent('¡Hola! ¿Llegan con envíos al código postal ' + m[1] + '?');
+      a.target = '_blank'; a.rel = 'noopener';
+    }
+    ops.hidden = false;
+    try { localStorage.setItem(KEY_CP, m[1]); } catch (e) {}
+  }
+  if (formEnvio) {
+    formEnvio.addEventListener('submit', function (e) { e.preventDefault(); calcularEnvio($('#cp').value); });
+    var cpGuardado = null;
+    try { cpGuardado = localStorage.getItem(KEY_CP); } catch (e) {}
+    if (cpGuardado) { $('#cp').value = cpGuardado; calcularEnvio(cpGuardado, true); }
+  }
+
   /* ---------- Tarjetas y carril de la tienda ---------- */
   function tarjeta(p) {
     var mom = MOMENTO[p.slug] ? '<span class="flag">' + MOMENTO[p.slug] + '</span>' : '';
@@ -242,8 +299,7 @@
     return '<article class="card">' +
       '<div class="card-foto">' + mom +
       '<a href="' + link + '" tabindex="-1" aria-hidden="true"><img src="' + IMG + p.img + '-640.webp" alt="' + p.name + '" loading="lazy" width="640" height="' + (p.tall ? 853 : 640) + '"></a>' +
-      '<button type="button" class="sumar" data-sumar="' + p.slug + '" aria-label="Sumar ' + p.name + ' al pedido">' +
-      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg></button></div>' +
+      '<span class="ctrl" data-ctrl="' + p.slug + '">' + control(p.slug) + '</span></div>' +
       '<h3><a href="' + link + '">' + p.name + '</a></h3><p>' + (LINEAS[p.slug] || '') + '</p></article>';
   }
   var carril = $('#carril'), chips = $$('.chip');
