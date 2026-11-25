@@ -454,3 +454,6 @@ button { font: inherit; color: inherit; cursor: pointer; }
   .hero-etiquetas { gap: 8px; }
   .pastilla { font-size: 11.5px; letter-spacing: .06em; padding: 0 13px; }
 }
+
+/* Globo con el texto de Katia (25/11 19:31) */
+.globo strong { display: block; margin-top: 4px; font-weight: 900; letter-spacing: .02em; }
