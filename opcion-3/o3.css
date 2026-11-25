@@ -457,3 +457,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 
 /* Globo con el texto de Katia (25/11 19:31) */
 .globo strong { display: block; margin-top: 4px; font-weight: 900; letter-spacing: .02em; }
+
+/* Con «Proteicos» son 9 categorías: el megamenú pasa a 3 columnas y en el menú del celular la última va a lo ancho */
+.mega-grid { grid-template-columns: repeat(3, 1fr); }
+.menu-movil .cats a:last-child:nth-child(odd) { grid-column: 1 / -1; }

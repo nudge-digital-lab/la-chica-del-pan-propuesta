@@ -6,6 +6,9 @@
   /* Categorías como las pidió Katia (25/11): las cookies NY van con las cookies, las trufas solas y «Snacks salados». */
   P.forEach(function (p) { if (/^cookie-ny-/.test(p.slug)) p.cat = 'cookies'; });
   CATS = Object.assign({}, CATS, { trufas: 'Trufas', salados: 'Snacks salados' });
+  /* «Proteicos» (pedido de Katia, 25/11 19:48): junta productos de otras categorías; cada uno sigue también en la suya. */
+  var PROTEICOS = ['granola-proteica', 'matcha-protein-balls', 'chocolate-protein-balls', 'coco-protein-balls', 'cookie-ny-clasica', 'cookie-ny-chocolate', 'cookie-ny-pistacho'];
+  CATS.proteicos = 'Proteicos';
   var bySlug = {}; P.forEach(function (p) { bySlug[p.slug] = p; });
   var $ = function (s, c) { return (c || document).querySelector(s); };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
@@ -55,14 +58,16 @@
   /* Colores por categoría: fondo y texto (combinaciones con contraste suficiente). */
   var COLOR = {
     panes: ['#E24724', '#1B2016'], cookies: ['#D7C943', '#6F0315'], trufas: ['#4AA5BE', '#1B2016'], alfajores: ['#FDB8CC', '#6F0315'],
-    datiles: ['#C7CD54', '#1B2016'], bocaditos: ['#2559BF', '#FFFFFF'], salados: ['#6F0315', '#FDB8CC'], granolas: ['#CB2C5C', '#FFFFFF']
+    datiles: ['#C7CD54', '#1B2016'], bocaditos: ['#2559BF', '#FFFFFF'], salados: ['#6F0315', '#FDB8CC'], granolas: ['#CB2C5C', '#FFFFFF'],
+    proteicos: ['#1B2016', '#C7CD54']
   };
-  var CAT_IMG = window.LCDP_CAT_IMG || {};
+  var CAT_IMG = Object.assign({}, window.LCDP_CAT_IMG || {}, { proteicos: 'granola-proteica' });
   var CORTO = { datiles: 'Dátiles', bocaditos: 'Bocaditos' };
   var CAT_LINEA = {
     panes: 'Para tostar, para el sándwich, para todo', cookies: 'Clásicas, de chocolate, de pistacho y estilo NY', trufas: 'De matcha, de chocolate y de coco',
     alfajores: 'De chocolate, matcha y frutos rojos', datiles: 'Rellenos de pistacho, cajú, chocolate y maní', bocaditos: 'Mini cakes y bites para darte un gusto',
-    salados: 'Chipá, crackers y bizcochitos', granolas: 'Para el yogur o directo del paquete'
+    salados: 'Chipá, crackers y bizcochitos', granolas: 'Para el yogur o directo del paquete',
+    proteicos: 'Granola proteica, trufas y cookies NY'
   };
   /* Orden de «Todo»: arranca con los que elegimos para mostrar (hasta saber cuáles venden más) y mezcla categorías. */
   var ORDEN = ['pan-de-almendras', 'cookies-pistacho', 'alfajor-matcha', 'datiles-pistacho', 'chipa', 'mini-cake-pistacho', 'cookie-ny-chocolate', 'bites-snicker',
@@ -308,7 +313,9 @@
   var carril = $('#carril'), chips = $$('.chip');
   function filtrar(cat) {
     if (!carril) return;
-    var lista = cat === 'todo' ? ordenTodo.map(function (s) { return bySlug[s]; }).filter(Boolean) : P.filter(function (p) { return p.cat === cat; });
+    var lista = cat === 'todo' ? ordenTodo.map(function (s) { return bySlug[s]; }).filter(Boolean)
+      : cat === 'proteicos' ? PROTEICOS.map(function (s) { return bySlug[s]; }).filter(Boolean)
+      : P.filter(function (p) { return p.cat === cat; });
     carril.innerHTML = lista.map(tarjeta).join('');
     carril.scrollLeft = 0;
     chips.forEach(function (c) { c.setAttribute('aria-pressed', String(c.getAttribute('data-filtro') === cat)); });
