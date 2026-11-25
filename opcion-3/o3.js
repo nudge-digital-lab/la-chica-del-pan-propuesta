@@ -313,13 +313,17 @@
   var carril = $('#carril'), chips = $$('.chip');
   function filtrar(cat) {
     if (!carril) return;
-    var lista = cat === 'todo' ? ordenTodo.map(function (s) { return bySlug[s]; }).filter(Boolean)
+    var lista = cat === 'mas' ? ORDEN.map(function (s) { return bySlug[s]; }).filter(Boolean)
+      : cat === 'todo' ? ordenTodo.map(function (s) { return bySlug[s]; }).filter(Boolean)
       : cat === 'proteicos' ? PROTEICOS.map(function (s) { return bySlug[s]; }).filter(Boolean)
       : P.filter(function (p) { return p.cat === cat; });
     carril.innerHTML = lista.map(tarjeta).join('');
     carril.scrollLeft = 0;
     chips.forEach(function (c) { c.setAttribute('aria-pressed', String(c.getAttribute('data-filtro') === cat)); });
     var cuenta = $('#cuenta'); if (cuenta) cuenta.textContent = lista.length + (lista.length === 1 ? ' producto' : ' productos');
+    /* Sin filtros arriba (Katia, 25/11): el título dice qué se está viendo y hay un link para volver a los más pedidos. */
+    var tit = $('#tienda-t'); if (tit) tit.textContent = cat === 'mas' ? 'Los más pedidos' : cat === 'todo' ? 'Todos los productos' : CATS[cat];
+    $$('[data-volver]').forEach(function (v) { v.hidden = cat === 'mas'; });
     actualizarFlechas();
   }
   chips.forEach(function (c) { c.addEventListener('click', function () { filtrar(c.getAttribute('data-filtro')); }); });
@@ -343,7 +347,7 @@
     carril.addEventListener('scroll', actualizarFlechas, { passive: true }); window.addEventListener('resize', actualizarFlechas);
     /* Si se llega desde el megamenú o el menú de otra página (index.html?cat=…), se abre filtrada. */
     var catUrl = (location.search.match(/[?&]cat=([\w-]+)/) || [])[1];
-    filtrar(catUrl && CATS[catUrl] ? catUrl : 'todo');
+    filtrar(catUrl && (CATS[catUrl] || catUrl === 'todo') ? catUrl : 'mas');
   }
 
   /* Otros carriles fijos (ficha: «Va bien con») */

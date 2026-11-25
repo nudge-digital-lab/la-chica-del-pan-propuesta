@@ -9,7 +9,7 @@
 <link rel="icon" href="../assets/marca/favicon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&family=Schibsted+Grotesk:wght@400..900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Oxygen:wght@300;400;700&family=Schibsted+Grotesk:wght@400..900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="o3.css">
 </head>
 <body>
@@ -51,7 +51,6 @@
       <p class="eyebrow">Hecho a mano en Buenos Aires · Horneado a pedido</p>
       <h1 class="mega-t" id="hero-t"><span>Lo rico</span> <span>no se</span> <span>negocia.</span></h1>
       <p class="t-l hero-si"><span>Sin azúcar agregada.</span> <span>Sin harinas refinadas.</span></p>
-      <p class="hero-etiquetas"><a class="pastilla" href="#tienda">Opciones keto</a> <a class="pastilla" href="#etiqueta">Ingredientes reales</a> <a class="pastilla" href="#tienda">Snacks de verdad</a></p>
       <div class="hero-ctas">
         <a class="btn btn-rosa" href="#tienda"><span>Pedí para el <span data-viernes>viernes</span></span></a>
         <a class="link" href="#como-pedir">Cómo funciona</a>
@@ -61,49 +60,32 @@
       <div class="foto f1"><img src="../assets/img/pan-de-almendras-1200.webp" alt="" width="1200" height="1600"></div>
       <div class="foto f2"><img src="../assets/img/cookies-pistacho-640.webp" alt="" width="640" height="640"></div>
       <div class="foto f3"><img src="../assets/img/alfajor-matcha-640.webp" alt="" width="640" height="853"></div>
-      <div class="sello">
-        <svg viewBox="0 0 140 140"><defs><path id="circ" d="M70 70m-56 0a56 56 0 1 1 112 0a56 56 0 1 1-112 0"/></defs>
-          <circle cx="70" cy="70" r="69" fill="#FDB8CC"/>
-          <text fill="#6F0315" font-family="Schibsted Grotesk, sans-serif" font-weight="800" font-size="13.2" letter-spacing="2.2"><textPath href="#circ">HECHO A MANO ✱ SIN AZÚCAR AGREGADA ✱ </textPath></text>
-        </svg>
-        <span class="iso"></span>
-      </div>
+      <img class="sello" src="../assets/img/sello-lima-640.webp" alt="" width="640" height="640">
       <p class="globo">No tiene pinta de ser saludable, ¿no? <strong>ES LA IDEA.</strong></p>
     </div>
   </div>
 </section>
 
-<div class="marquesina" aria-label="Sin azúcar agregada, hecho a mano, horneado a pedido, entregas los viernes en CABA y Zona Norte">
+<div class="marquesina" aria-label="Hecho a mano, horneado a pedido, opciones keto, ingredientes reales, snacks de verdad, entregas los viernes en CABA y Zona Norte">
   <div class="marquesina-in" aria-hidden="true">
-    <p><span>Sin azúcar agregada</span><i>✱</i><span>Hecho a mano</span><i>✱</i><span>Horneado a pedido</span><i>✱</i><span>Entregas los viernes</span><i>✱</i><span>CABA y Zona Norte</span><i>✱</i></p>
-    <p><span>Sin azúcar agregada</span><i>✱</i><span>Hecho a mano</span><i>✱</i><span>Horneado a pedido</span><i>✱</i><span>Entregas los viernes</span><i>✱</i><span>CABA y Zona Norte</span><i>✱</i></p>
+    <p><span>Hecho a mano</span><i>✱</i><span>Horneado a pedido</span><i>✱</i><span>Opciones keto</span><i>✱</i><span>Ingredientes reales</span><i>✱</i><span>Snacks de verdad</span><i>✱</i><span>Entregas los viernes en CABA y Zona Norte</span><i>✱</i></p>
+    <p><span>Hecho a mano</span><i>✱</i><span>Horneado a pedido</span><i>✱</i><span>Opciones keto</span><i>✱</i><span>Ingredientes reales</span><i>✱</i><span>Snacks de verdad</span><i>✱</i><span>Entregas los viernes en CABA y Zona Norte</span><i>✱</i></p>
   </div>
 </div>
 
 <section class="sec" id="tienda" aria-labelledby="tienda-t">
   <div class="wrap">
     <div class="sec-head">
-      <h2 class="t-xl" id="tienda-t">Empezá por acá</h2>
+      <h2 class="t-xl" id="tienda-t">Los más pedidos</h2>
       <div class="flechas">
         <button type="button" class="flecha" data-flecha="-1" aria-label="Ver los anteriores"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
         <button type="button" class="flecha" data-flecha="1" aria-label="Ver los siguientes"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
       </div>
     </div>
-    <div class="filtros" role="group" aria-label="Filtrar por categoría">
-      <button type="button" class="chip" data-filtro="todo" aria-pressed="true">Todo</button>
-      <button type="button" class="chip" data-filtro="panes" aria-pressed="false">Panes</button>
-      <button type="button" class="chip" data-filtro="cookies" aria-pressed="false">Cookies</button>
-      <button type="button" class="chip" data-filtro="alfajores" aria-pressed="false">Alfajores</button>
-      <button type="button" class="chip" data-filtro="datiles" aria-pressed="false">Dátiles</button>
-      <button type="button" class="chip" data-filtro="trufas" aria-pressed="false">Trufas</button>
-      <button type="button" class="chip" data-filtro="bocaditos" aria-pressed="false">Bocaditos</button>
-      <button type="button" class="chip" data-filtro="salados" aria-pressed="false">Snacks salados</button>
-      <button type="button" class="chip" data-filtro="granolas" aria-pressed="false">Granolas</button>
-      <button type="button" class="chip" data-filtro="proteicos" aria-pressed="false">Proteicos</button>
-    </div>
     <div class="carril" id="carril" aria-live="polite"></div>
     <div class="tienda-pie">
       <span><span id="cuenta"></span> · todo se hornea a pedido</span>
+      <a class="link" href="index.html#tienda" data-cat="mas" data-volver hidden>Ver los más pedidos</a>
       <a class="link" href="#como-pedir">Cómo funciona</a>
     </div>
   </div>

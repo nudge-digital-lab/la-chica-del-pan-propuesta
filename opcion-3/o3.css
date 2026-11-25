@@ -461,3 +461,39 @@ button { font: inherit; color: inherit; cursor: pointer; }
 /* Con «Proteicos» son 9 categorías: el megamenú pasa a 3 columnas y en el menú del celular la última va a lo ancho */
 .mega-grid { grid-template-columns: repeat(3, 1fr); }
 .menu-movil .cats a:last-child:nth-child(odd) { grid-column: 1 / -1; }
+
+/* ---------- Comentarios de Katia (25/11 20:04) ----------
+   Mayúsculas gruesas solo en el título principal y en la escalera de categorías; el resto en minúscula.
+   DM Serif Display itálica para los detalles (el toque editorial tipo Ghia). Logo de arriba en bordó.
+   El sello es su sticker lima con su ilustración (el de las etiquetas). */
+:root { --serif: 'DM Serif Display', Georgia, serif; }
+.logo { background: var(--bordo); }
+.pie .logo { background: var(--crema); }
+.t-xl { font: 700 clamp(34px, 4.4vw, 64px)/1.02 var(--display); letter-spacing: -.025em; text-transform: none; }
+.t-l { font-weight: 700; letter-spacing: -.02em; line-height: 1.05; text-transform: none; }
+.eyebrow { font: italic 400 clamp(17px, 1.5vw, 20px)/1.2 var(--serif); letter-spacing: 0; text-transform: none; }
+.flag { font: italic 400 15px/1 var(--serif); letter-spacing: 0; text-transform: none; }
+.link { font: 700 15px/1 var(--display); letter-spacing: 0; text-transform: none; }
+.nav a, .nav-tienda { font: 700 15px/1 var(--display); letter-spacing: 0; text-transform: none; }
+.hero-si { font: italic 400 clamp(26px, 2.9vw, 42px)/1.1 var(--serif); letter-spacing: 0; text-transform: none; color: var(--blanco); margin-bottom: 30px; }
+.marquesina p { font: italic 400 clamp(22px, 2.5vw, 32px)/1 var(--serif); letter-spacing: 0; text-transform: none; }
+.card h3 { font: 700 18px/1.15 var(--display); letter-spacing: -.005em; text-transform: none; }
+.katia-hola { font: italic 400 clamp(36px, 4.2vw, 60px)/1 var(--serif); letter-spacing: 0; }
+.katia-t { font: 800 clamp(56px, 7.4vw, 108px)/.9 var(--display); letter-spacing: -.035em; text-transform: none; }
+.katia-rol { font: italic 400 clamp(19px, 1.6vw, 22px)/1.3 var(--serif); letter-spacing: 0; text-transform: none; }
+.pasos h3 { font: 700 clamp(22px, 2.1vw, 28px)/1.1 var(--display); letter-spacing: -.015em; text-transform: none; }
+.sellos li { font-weight: 700; letter-spacing: 0; text-transform: none; }
+.pie h4 { font: italic 400 19px/1.1 var(--serif); letter-spacing: 0; text-transform: none; }
+.acordeon summary { font: 700 17px/1.1 var(--display); letter-spacing: 0; text-transform: none; }
+.cajon-head h2 { font: 700 24px/1 var(--display); text-transform: none; }
+.item b { font: 700 15px/1.2 var(--display); text-transform: none; }
+.menu-movil nav a { font: 700 26px/1.1 var(--display); letter-spacing: -.015em; text-transform: none; }
+.menu-movil .cats a { font: 700 14px/1.15 var(--display); text-transform: none; }
+.barra-compra b { font: 700 15px/1.15 var(--display); text-transform: none; }
+.mega-grid b { font: 800 17px/1.05 var(--display); letter-spacing: -.01em; text-transform: none; }
+.mega-prod b { font: 700 15px/1.15 var(--display); text-transform: none; }
+.mega-entrega .mega-fecha { font: 700 34px/1 var(--display); letter-spacing: -.02em; text-transform: none; }
+.envio-t { font: 700 15px/1.1 var(--display); letter-spacing: 0; text-transform: none; }
+/* El sello: su sticker lima con su ilustración, apenas girado */
+.sello { width: 152px; height: 152px; border-radius: 50%; transform: rotate(-8deg); box-shadow: 0 12px 26px rgba(20, 0, 5, .3); }
+@media (max-width: 760px) { .sello { width: 112px; height: 112px; } .hero-si { margin-bottom: 22px; } }
