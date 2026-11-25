@@ -6,9 +6,9 @@
 :root {
   --bordo: #6F0315;
   --rosa: #FDB8CC;
-  --rosa-claro: #FFE3EB;
   --crema: #F0DEC6;
-  --fondo: #FBF3E9;
+  --fondo: #F0DEC6;   /* crema del manual */
+  --blanco: #FFFFFF;
   --terracota: #E24724;
   --marron: #75571C;
   --verde: #1B2016;
@@ -17,7 +17,7 @@
   --azul: #2559BF;
   --fucsia: #CB2C5C;
   --turquesa: #4AA5BE;
-  --tinta: #2A0A10;
+  --tinta: #1B2016;   /* verde oscuro del manual */
   --display: 'Schibsted Grotesk', system-ui, sans-serif;
   --texto: 'Oxygen', system-ui, sans-serif;
   --r: 18px;
@@ -66,7 +66,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .nav { display: flex; gap: 26px; }
 .nav a { font: 800 14px/1 var(--display); letter-spacing: .05em; text-transform: uppercase; text-decoration: none; color: var(--bordo); padding: 8px 0; border-bottom: 2px solid transparent; }
 .nav a:hover { border-color: var(--bordo); }
-.logo { display: block; width: 200px; aspect-ratio: 900 / 173; background: var(--bordo); -webkit-mask: url(../assets/marca/logo.png) center / contain no-repeat; mask: url(../assets/marca/logo.png) center / contain no-repeat; }
+.logo { display: block; width: 200px; aspect-ratio: 900 / 173; background: var(--marron); -webkit-mask: url(../assets/marca/logo.png) center / contain no-repeat; mask: url(../assets/marca/logo.png) center / contain no-repeat; }
 .acciones { display: flex; justify-content: flex-end; align-items: center; gap: 8px; }
 .ico-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-width: 44px; height: 44px; padding: 0 12px; border-radius: 999px; border: 2px solid var(--bordo); background: transparent; color: var(--bordo); font: 800 14px/1 var(--display); text-decoration: none; }
 .ico-btn svg { width: 20px; height: 20px; }
@@ -86,7 +86,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .hero h1 span { display: block; }
 .hero-si { color: #fff; margin-top: 14px; }
 .hero h1 .si { color: #fff; }
-.hero .bajada { color: #FFE3EB; margin: 26px 0 30px; }
+.hero .bajada { color: var(--rosa); margin: 26px 0 30px; }
 .hero-ctas { display: flex; flex-wrap: wrap; align-items: center; gap: 14px 22px; }
 .hero-ctas .link { color: var(--rosa); }
 .hero-nota { margin: 18px 0 0; font: 700 13px/1.4 var(--display); color: var(--rosa); opacity: .85; }
@@ -119,7 +119,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 /* Tienda: filtros + carrusel */
 .filtros { display: flex; gap: 8px; flex-wrap: wrap; margin: 0 0 22px; }
 .chip { border: 2px solid var(--bordo); background: transparent; color: var(--bordo); border-radius: 999px; font: 800 13px/1 var(--display); letter-spacing: .06em; text-transform: uppercase; padding: 10px 14px; min-height: 40px; }
-.chip:hover { background: var(--rosa-claro); }
+.chip:hover { background: var(--rosa); }
 .chip[aria-pressed="true"] { background: var(--bordo); color: var(--rosa); }
 .flechas { display: flex; gap: 8px; }
 .flecha { width: 46px; height: 46px; border-radius: 50%; border: 2px solid var(--bordo); background: var(--fondo); color: var(--bordo); display: grid; place-items: center; }
@@ -140,8 +140,9 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .card h3 { margin: 14px 0 4px; font: 900 19px/1.05 var(--display); letter-spacing: -.01em; text-transform: uppercase; color: var(--bordo); }
 .card h3 a { text-decoration: none; }
 .card h3 a:hover { text-decoration: underline; text-underline-offset: 3px; }
-.card p { margin: 0; font-size: 14.5px; line-height: 1.45; color: #4b2a30; }
-.tienda-pie { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 26px; font: 700 14px/1.4 var(--display); color: var(--bordo); }
+.card p { margin: 0; font-size: 14.5px; line-height: 1.45; color: var(--marron); }
+.tienda-pie { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; margin-top: 26px; font: 700 14px/1.4 var(--display); color: var(--marron); }
+.tienda-pie .link { color: var(--bordo); }
 
 /* Bandas apiladas de categorías */
 .bandas-sec { padding-top: 0; }
@@ -161,7 +162,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .katia-ilu { position: relative; aspect-ratio: 800 / 986; max-width: 400px; width: 100%; justify-self: center; }
 .katia-ilu .ilu { position: absolute; inset: 0; background: var(--bordo); -webkit-mask: url(../assets/marca/ilustracion.png) center / contain no-repeat; mask: url(../assets/marca/ilustracion.png) center / contain no-repeat; }
 .katia-ilu .flag { position: absolute; top: 4%; right: -4%; transform: rotate(4deg); font-size: 13px; padding: 9px 18px 9px 12px; }
-.charla { background: var(--fondo); border: 3px solid var(--bordo); border-radius: 28px 28px 28px 6px; padding: clamp(24px, 3.4vw, 44px); box-shadow: 10px 10px 0 var(--bordo); }
+.charla { background: var(--blanco); border: 3px solid var(--bordo); border-radius: 28px 28px 28px 6px; padding: clamp(24px, 3.4vw, 44px); box-shadow: 10px 10px 0 var(--bordo); }
 .charla .t-l { margin-bottom: 18px; }
 .charla p { font-size: clamp(16px, 1.3vw, 18.5px); line-height: 1.6; margin: 0 0 14px; color: var(--tinta); }
 .charla .firma { margin: 18px 0 0; font: 800 15px/1.2 var(--display); color: var(--bordo); }
@@ -169,7 +170,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 /* Cómo funciona */
 .pasos-sec { background: var(--amarillo); color: var(--bordo); }
 .pasos { list-style: none; margin: 34px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; counter-reset: paso; }
-.pasos li { background: var(--fondo); border: 3px solid var(--bordo); border-radius: 24px; padding: 26px 26px 28px; position: relative; }
+.pasos li { background: var(--blanco); border: 3px solid var(--bordo); border-radius: 24px; padding: 26px 26px 28px; position: relative; }
 .pasos .n { display: block; font: 900 clamp(64px, 7vw, 104px)/.85 var(--display); letter-spacing: -.05em; color: var(--fucsia); }
 .pasos h3 { font: 900 clamp(24px, 2.4vw, 32px)/1 var(--display); text-transform: uppercase; letter-spacing: -.02em; margin: 14px 0 10px; }
 .pasos p { margin: 0; color: var(--tinta); font-size: 16px; }
@@ -180,15 +181,15 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .etiqueta-foto { position: relative; border-radius: 26px; overflow: hidden; aspect-ratio: 4 / 4.4; transform: rotate(-2deg); border: 6px solid #fff; box-shadow: 0 22px 50px rgba(20, 0, 5, .18); }
 .etiqueta-foto img { width: 100%; height: 100%; object-fit: cover; }
 .etiqueta .t-xl { color: var(--bordo); }
-.etiqueta .bajada { margin: 22px 0 26px; }
+.etiqueta .bajada { margin: 22px 0 26px; color: var(--marron); }
 .sellos { display: flex; flex-wrap: wrap; gap: 10px; margin: 0; padding: 0; list-style: none; }
 .sellos li { font: 800 14px/1 var(--display); text-transform: uppercase; letter-spacing: .04em; padding: 12px 16px; border-radius: 999px; background: var(--c); color: var(--t, var(--bordo)); }
 
 /* Mayoristas */
-.mayo { background: var(--azul); color: var(--fondo); }
+.mayo { background: var(--azul); color: var(--blanco); }
 .mayo-in { display: grid; grid-template-columns: 1.3fr .7fr; gap: 40px; align-items: center; }
 .mayo .eyebrow { color: var(--amarillo); }
-.mayo .bajada { color: #E9EEFB; margin: 20px 0 0; }
+.mayo .bajada { color: var(--blanco); margin: 20px 0 0; }
 .mayo-cta { justify-self: end; display: grid; gap: 12px; text-align: center; }
 .mayo-cta .btn { background: var(--amarillo); color: var(--bordo); }
 .mayo-cta .btn:hover { background: #fff; }
@@ -197,7 +198,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 /* Instagram */
 .insta { text-align: center; }
 .insta .t-xl { color: var(--bordo); font-size: clamp(27px, 7.4vw, 84px); overflow-wrap: anywhere; }
-.insta .bajada { margin: 18px auto 26px; }
+.insta .bajada { margin: 18px auto 26px; color: var(--marron); }
 
 /* Pie */
 .pie { background: var(--verde); color: var(--crema); padding: 64px 0 40px; }
@@ -211,7 +212,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .pie-base { margin-top: 48px; padding-top: 22px; border-top: 1px solid rgba(240, 222, 198, .25); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 13px; opacity: .8; }
 
 /* ---------- Ficha de producto ---------- */
-.migas { font: 700 13px/1.4 var(--display); color: var(--bordo); padding: 18px 0 0; }
+.migas { font: 700 13px/1.4 var(--display); color: var(--marron); padding: 18px 0 0; }
 .migas a { text-decoration: none; opacity: .75; }
 .migas a:hover { opacity: 1; text-decoration: underline; }
 .pdp { display: grid; grid-template-columns: 1.1fr .9fr; gap: clamp(28px, 4vw, 64px); padding: 22px 0 70px; align-items: start; }
@@ -230,14 +231,14 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .compra { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
 .cant { display: inline-flex; align-items: center; border: 2px solid var(--bordo); border-radius: 999px; height: 50px; }
 .cant button { width: 46px; height: 46px; border: 0; background: transparent; color: var(--bordo); font: 800 22px/1 var(--display); border-radius: 50%; }
-.cant button:hover { background: var(--rosa-claro); }
+.cant button:hover { background: var(--rosa); }
 .cant output { min-width: 30px; text-align: center; font: 800 17px/1 var(--display); color: var(--bordo); }
 .compra .btn { flex: 1 1 220px; }
-.pago { margin: 12px 0 0; font-size: 14px; color: #4b2a30; }
+.pago { margin: 12px 0 0; font-size: 14px; color: var(--marron); }
 .entrega { margin: 24px 0; background: var(--bordo); color: var(--rosa); border-radius: 22px; padding: 20px 22px; }
 .entrega p { margin: 0; font: 700 17px/1.35 var(--display); }
 .entrega strong { color: #fff; }
-.entrega ul { margin: 14px 0 0; padding: 0; list-style: none; display: grid; gap: 6px; font-size: 14.5px; color: #FFE3EB; }
+.entrega ul { margin: 14px 0 0; padding: 0; list-style: none; display: grid; gap: 6px; font-size: 14.5px; color: var(--rosa); }
 .entrega li::before { content: '✱ '; color: var(--amarillo); }
 .contiene { margin: 0 0 16px; padding: 14px 16px; border-radius: 14px; background: var(--amarillo); color: var(--bordo); font: 700 15px/1.4 var(--display); }
 .acordeon details { border-top: 2px solid var(--bordo); }
@@ -254,7 +255,7 @@ button { font: inherit; color: inherit; cursor: pointer; }
 .barra-compra { display: none; }
 
 /* ---------- Carrito ---------- */
-.capa { position: fixed; inset: 0; background: rgba(42, 10, 16, .5); z-index: 60; opacity: 0; pointer-events: none; transition: opacity .2s ease; }
+.capa { position: fixed; inset: 0; background: rgba(27, 32, 22, .55); z-index: 60; opacity: 0; pointer-events: none; transition: opacity .2s ease; }
 .capa.abierta { opacity: 1; pointer-events: auto; }
 .cajon { position: fixed; top: 0; bottom: 0; z-index: 70; width: min(420px, 92vw); background: var(--fondo); display: flex; flex-direction: column; transition: transform .25s ease; }
 .cajon-der { right: 0; transform: translateX(100%); border-left: 3px solid var(--bordo); }

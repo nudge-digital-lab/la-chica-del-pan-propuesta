@@ -52,7 +52,7 @@
   /* Colores por categoría: fondo y texto (combinaciones con contraste suficiente). */
   var COLOR = {
     panes: ['#E24724', '#1B2016'], cookies: ['#D7C943', '#6F0315'], trufas: ['#4AA5BE', '#1B2016'], alfajores: ['#FDB8CC', '#6F0315'],
-    datiles: ['#C7CD54', '#1B2016'], bocaditos: ['#2559BF', '#FBF3E9'], salados: ['#6F0315', '#FDB8CC'], granolas: ['#CB2C5C', '#FFFFFF']
+    datiles: ['#C7CD54', '#1B2016'], bocaditos: ['#2559BF', '#FFFFFF'], salados: ['#6F0315', '#FDB8CC'], granolas: ['#CB2C5C', '#FFFFFF']
   };
   var CAT_IMG = window.LCDP_CAT_IMG || {};
   var CORTO = { trufas: 'Trufas y NY', datiles: 'Dátiles', bocaditos: 'Bocaditos' };
