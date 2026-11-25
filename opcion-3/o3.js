@@ -66,6 +66,31 @@
     'crackers-salados', 'granola-energy', 'alfajor-frutos-rojos', 'matcha-protein-balls'];
   var ordenTodo = ORDEN.concat(P.map(function (p) { return p.slug; }).filter(function (s) { return ORDEN.indexOf(s) === -1; }));
 
+  /* ---------- Megamenú de «Tienda» (compu) ---------- */
+  var ARRANQUE = ['pan-de-almendras', 'cookies-pistacho', 'alfajor-matcha'];
+  var mega = $('[data-mega]');
+  if (mega) {
+    mega.innerHTML = '<div class="wrap mega-in">' +
+      '<div class="mega-cats"><p class="eyebrow">Categorías</p><ul class="mega-grid">' +
+      Object.keys(CATS).map(function (k) {
+        return '<li><a href="index.html?cat=' + k + '#tienda" data-cat="' + k + '" style="--c:' + COLOR[k][0] + ';--t:' + COLOR[k][1] + '">' +
+          '<span class="mega-foto"><img src="' + IMG + CAT_IMG[k] + '-640.webp" alt="" loading="lazy" width="56" height="56"></span>' +
+          '<b>' + (CORTO[k] || CATS[k]) + '</b><small>' + CAT_LINEA[k] + '</small></a></li>';
+      }).join('') +
+      '</ul><a class="link" href="index.html#tienda" data-cat="todo">Ver los ' + P.length + ' productos</a></div>' +
+      '<div class="mega-arranque"><p class="eyebrow">Para arrancar</p>' +
+      ARRANQUE.map(function (s) {
+        var p = bySlug[s]; if (!p) return '';
+        return '<a class="mega-prod" href="' + (s === 'pan-de-almendras' ? 'producto.html' : 'producto.html?ejemplo=' + s) + '">' +
+          '<img src="' + IMG + p.img + '-640.webp" alt="" loading="lazy" width="72" height="72"><span><b>' + p.name + '</b><small>' + LINEAS[s] + '</small></span></a>';
+      }).join('') + '</div>' +
+      '<div class="mega-entrega"><p class="eyebrow">Próxima entrega</p><p class="mega-fecha" data-viernes>el viernes</p>' +
+      '<p>Pedí hasta el <strong data-corte>miércoles a las 18</strong> y lo horneamos para esa tanda.</p>' +
+      '<a class="btn btn-rosa" href="index.html#tienda" data-cat="todo">Armar mi pedido</a>' +
+      '<a class="mega-mayo" href="index.html#mayoristas">¿Tenés un café o una dietética? Pedí la lista mayorista →</a></div>' +
+      '</div>';
+  }
+
   /* ---------- Fechas: entrega los viernes, corte el miércoles anterior a las 18 ---------- */
   function iso(d) { return d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2); }
   function proxima(now) {
@@ -118,12 +143,37 @@
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') cerrar(); });
   $$('.menu-movil a').forEach(function (a) { a.addEventListener('click', function () { cerrar(true); }); });
 
-  /* Categorías del menú del celular */
+  /* Categorías del menú del celular, con foto */
   $$('[data-menu-cats]').forEach(function (box) {
     box.innerHTML = Object.keys(CATS).map(function (k) {
-      return '<a href="index.html#tienda" data-cat="' + k + '" style="--c:' + COLOR[k][0] + ';--t:' + COLOR[k][1] + '">' + CATS[k] + '</a>';
+      return '<a href="index.html?cat=' + k + '#tienda" data-cat="' + k + '" style="--c:' + COLOR[k][0] + ';--t:' + COLOR[k][1] + '">' +
+        '<img src="' + IMG + CAT_IMG[k] + '-640.webp" alt="" loading="lazy" width="44" height="44"><span>' + (CORTO[k] || CATS[k]) + '</span></a>';
     }).join('');
   });
+
+  /* Abrir y cerrar el megamenú: con el mouse (con una demora para no abrirse de pasada), con clic o con Enter;
+     se cierra con Escape, al salir con el mouse, con un clic afuera o al elegir algo. */
+  var megaBtn = $('[data-mega-btn]');
+  if (mega && megaBtn) {
+    var tAbrir, tCerrar;
+    var abrirMega = function () { clearTimeout(tCerrar); mega.hidden = false; megaBtn.setAttribute('aria-expanded', 'true'); };
+    var cerrarMega = function (volver) {
+      clearTimeout(tAbrir); if (mega.hidden) return;
+      mega.hidden = true; megaBtn.setAttribute('aria-expanded', 'false'); if (volver) megaBtn.focus();
+    };
+    megaBtn.addEventListener('click', function () { if (mega.hidden) abrirMega(); else cerrarMega(); });
+    if (matchMedia('(hover: hover) and (pointer: fine)').matches) {
+      [megaBtn, mega].forEach(function (el) {
+        el.addEventListener('mouseenter', function () { clearTimeout(tCerrar); tAbrir = setTimeout(abrirMega, 140); });
+        el.addEventListener('mouseleave', function () { clearTimeout(tAbrir); tCerrar = setTimeout(cerrarMega, 240); });
+      });
+    }
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !mega.hidden) cerrarMega(true); });
+    document.addEventListener('click', function (e) { if (!mega.hidden && !mega.contains(e.target) && !megaBtn.contains(e.target)) cerrarMega(); });
+    mega.addEventListener('click', function (e) { if (e.target.closest('a')) cerrarMega(); });
+    mega.addEventListener('focusout', function (e) { if (e.relatedTarget && !mega.contains(e.relatedTarget) && e.relatedTarget !== megaBtn) cerrarMega(); });
+    window.addEventListener('resize', function () { if (window.innerWidth <= 1020) cerrarMega(); });
+  }
 
   /* ---------- Pedido (carrito de muestra, queda en el navegador) ---------- */
   var KEY = 'lcdp-o3-pedido', ped = {};
@@ -223,7 +273,12 @@
   $$('[data-flecha]').forEach(function (b) {
     b.addEventListener('click', function () { carril.scrollBy({ left: +b.getAttribute('data-flecha') * carril.clientWidth * .9, behavior: 'smooth' }); });
   });
-  if (carril) { carril.addEventListener('scroll', actualizarFlechas, { passive: true }); window.addEventListener('resize', actualizarFlechas); filtrar('todo'); }
+  if (carril) {
+    carril.addEventListener('scroll', actualizarFlechas, { passive: true }); window.addEventListener('resize', actualizarFlechas);
+    /* Si se llega desde el megamenú o el menú de otra página (index.html?cat=…), se abre filtrada. */
+    var catUrl = (location.search.match(/[?&]cat=([\w-]+)/) || [])[1];
+    filtrar(catUrl && CATS[catUrl] ? catUrl : 'todo');
+  }
 
   /* Otros carriles fijos (ficha: «Va bien con») */
   $$('[data-productos]').forEach(function (box) {

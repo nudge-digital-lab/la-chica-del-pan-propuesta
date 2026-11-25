@@ -357,3 +357,43 @@ button { font: inherit; color: inherit; cursor: pointer; }
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
   .marquesina-in { flex-wrap: wrap; width: auto; }
 }
+
+/* ---------- Megamenú de «Tienda» (solo colores del manual) ---------- */
+.nav-tienda { display: inline-flex; align-items: center; gap: 4px; border: 0; background: none; padding: 8px 0; font: 800 14px/1 var(--display); letter-spacing: .05em; text-transform: uppercase; color: var(--bordo); border-bottom: 2px solid transparent; }
+.nav-tienda svg { width: 16px; height: 16px; transition: transform .2s ease; }
+.nav-tienda:hover, .nav-tienda[aria-expanded="true"] { border-color: var(--bordo); }
+.nav-tienda[aria-expanded="true"] svg { transform: rotate(180deg); }
+.mega { position: absolute; left: 0; right: 0; top: 100%; z-index: 39; background: var(--fondo); border-bottom: 3px solid var(--bordo); box-shadow: 0 28px 40px rgba(27, 32, 22, .18); }
+.mega[hidden] { display: none; }
+.mega-in { display: grid; grid-template-columns: 1.75fr 1fr .95fr; gap: 28px; padding-top: 26px; padding-bottom: 30px; }
+.mega .eyebrow { color: var(--marron); }
+.mega-grid { list-style: none; margin: 0 0 16px; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+.mega-grid a { position: relative; display: flex; flex-direction: column; justify-content: space-between; gap: 10px; min-height: 118px; padding: 12px; border-radius: 16px; background: var(--c); color: var(--t); text-decoration: none; overflow: hidden; transition: transform .15s ease; }
+.mega-grid a:hover, .mega-grid a:focus-visible { transform: translateY(-3px); }
+.mega-grid b { font: 900 17px/1 var(--display); text-transform: uppercase; letter-spacing: -.01em; }
+.mega-grid small { display: none; }
+.mega-foto { width: 54px; height: 54px; border-radius: 50%; overflow: hidden; border: 3px solid var(--fondo); }
+.mega-foto img { width: 100%; height: 100%; object-fit: cover; }
+.mega-cats .link { color: var(--bordo); }
+.mega-arranque { display: grid; gap: 10px; align-content: start; }
+.mega-arranque .eyebrow { margin-bottom: 4px; }
+.mega-prod { display: grid; grid-template-columns: 72px 1fr; gap: 12px; align-items: center; padding: 8px; border-radius: 16px; background: var(--blanco); text-decoration: none; transition: transform .15s ease; }
+.mega-prod:hover, .mega-prod:focus-visible { transform: translateX(4px); }
+.mega-prod img { width: 72px; height: 72px; border-radius: 12px; object-fit: cover; }
+.mega-prod b { display: block; font: 900 15px/1.1 var(--display); text-transform: uppercase; color: var(--bordo); }
+.mega-prod small { display: block; font-size: 13px; line-height: 1.35; color: var(--marron); margin-top: 3px; }
+.mega-entrega { background: var(--bordo); color: var(--rosa); border-radius: 22px; padding: 22px; display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
+.mega-entrega .eyebrow { color: var(--amarillo); margin: 0; }
+.mega-entrega .mega-fecha { margin: 0; font: 900 36px/.95 var(--display); text-transform: uppercase; letter-spacing: -.02em; color: var(--blanco); }
+.mega-entrega p { margin: 0; font-size: 15px; }
+.mega-entrega strong { color: var(--blanco); }
+.mega-entrega .btn { min-height: 46px; }
+.mega-mayo { font: 700 13.5px/1.35 var(--display); color: var(--amarillo); text-decoration: none; margin-top: auto; }
+.mega-mayo:hover { text-decoration: underline; }
+@media (max-width: 1020px) { .mega { display: none !important; } }
+
+/* Categorías con foto en el menú del celular */
+.menu-movil .cats a { display: flex; align-items: center; gap: 10px; }
+.menu-movil .cats img { flex: none; width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid var(--fondo); }
+.nav { align-items: center; }
+.nav a, .nav-tienda { min-height: 44px; display: inline-flex; align-items: center; padding-top: 0; padding-bottom: 0; }
