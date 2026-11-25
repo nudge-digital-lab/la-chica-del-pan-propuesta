@@ -439,3 +439,14 @@ button { font: inherit; color: inherit; cursor: pointer; }
   .nav { gap: 16px; }
   .nav a, .nav-tienda { font-size: 13px; }
 }
+
+/* Hero como lo pidió Katia (25/11 18:28): dos claims y la etiqueta «Opciones keto», sin párrafo */
+.hero-si span { display: block; }
+.hero-etiquetas { margin: 18px 0 26px; }
+.pastilla { display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; border: 2px solid var(--rosa); border-radius: 999px; color: var(--rosa); font: 800 14px/1 var(--display); letter-spacing: .1em; text-transform: uppercase; text-decoration: none; }
+.pastilla:hover { background: var(--rosa); color: var(--bordo); }
+@media (max-width: 760px) {
+  .hero-etiquetas { margin: 14px 0 18px; }
+  .pastilla { font-size: 13px; padding: 0 16px; }
+}
+@media (min-width: 761px) { .hero-si { font-size: clamp(26px, 2.8vw, 40px); } }
